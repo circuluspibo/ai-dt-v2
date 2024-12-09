@@ -15,7 +15,7 @@ f.get('/', function handler (request, reply) {
 // Run the server!
 f.listen({ port: 3000 }, (err) => {
   if (err) {
-    fastify.log.error(err)
+    f.log.error(err)
     process.exit(1)
   }
 })
