@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d/control_utils_3d.js" crossorigin="anonymous"></script>
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <video class="input_video" hidden></video>
+    <canvas class="output_canvas" width="1280px" height="720px" ></canvas>
+    <div class="landmark-grid-container"></div>
+  </div>
+  <script>
+const videoElement = document.getElementsByClassName('input_video')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+
+//const landmarkContainer = document.getElementsByClassName('landmark-grid-container')[0];
+//const grid = new LandmarkGrid(landmarkContainer);
+
+
+let pos = 0
+let timeout = 0
+
+/*
+function onResults(results) {
+  const marks = results.poseLandmarks 
+  //console.log(results.poseLandmarks)
+  //if (!results.poseLandmarks) {
+  //  grid.updateLandmarks([]);
+  //  return;
+  //}
+
+  const l_eye_0 = marks[1]
+  const l_eye_1 = marks[2]
+
+  const r_eye_0 = marks[4]
+  const r_eye_1 = marks[5]
+
+  const l_arm = marks[13]
+  const r_arm = marks[14]
+
+  const l_hand = marks[15]
+  const r_hand = marks[16]
+
+  const l_mouse = marks[9]
+  const r_mouse = marks[10]
+
+  if(l_eye_1.x - l_eye_0.x < 0.005 && pos != 'RE'){
+    pos = 'RE'
+    console.log(pos)
+
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },2000)
+  }
+  //console.log(l_eye_0, l_eye_1)
+
+  if(r_eye_0.x - r_eye_1.x < 0.005 && pos != 'LE'){
+    pos = 'LE'
+    console.log(pos)
+
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },2000)
+  }
+  //console.log(r_eye_0, r_eye_1)
+
+
+  if(l_arm.visibility > 0.8 && pos != 'RA'){
+    pos = 'RA'
+    console.log(pos, l_arm.visibility)
+
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },2000)
+  } else if(l_hand.visibility > 0.8 && pos != 'RH'){
+    pos = 'RH'
+    console.log(pos)
+
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },2000)
+  }
+
+  if(r_arm.visibility > 0.8 && pos != 'LA'){
+    pos = 'LA'
+    console.log(pos,r_arm.visibility)
+
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },2000)
+  } else if(r_hand.visibility > 0.8 && pos != 'LH'){
+    pos = 'LH'
+    console.log(pos)
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },2000)
+  }
+
+  if(l_hand.visibility > 0.5 && r_hand.visibility > 0.5 && l_hand.x - r_hand.x < 0.25 && pos != 'CL'){
+    pos = 'CL'
+    console.error(pos)
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },3000)
+  }
+
+  //console.log(l_mouse.y - r_mouse.y)
+  if(l_mouse.y - r_mouse.y  > 0.01 && pos != 'RM'){
+    pos = 'RM'
+    console.error(pos)
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },3000)
+  } else if(r_mouse.y - l_mouse.y  > 0.01 && pos != 'LM'){
+    pos = 'LM'
+    console.error(pos)
+    clearTimeout(timeout)
+    timeout = setTimeout(()=>{
+      pos = 0
+    },3000)
+  }
+
+
+  canvasCtx.save()
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height)
+
+  canvasCtx.drawImage(results.segmentationMask, 0, 0, canvasElement.width, canvasElement.height)
+  canvasCtx.globalCompositeOperation = 'source-out';
+  canvasCtx.fillStyle = '#FFF';
+  canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+
+  //console.log(Object.keys(results))
+ // canvasCtx.drawImage(results.segmentationMask, 0, 0, canvasElement.width, canvasElement.height);
+
+  // Only overwrite existing pixels.
+  //canvasCtx.globalCompositeOperation = 'source-in';
+  //canvasCtx.fillStyle = '#0000FF';
+  //canvasCtx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+
+  // Only overwrite missing pixels.
+  canvasCtx.globalCompositeOperation = 'destination-atop';
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width , canvasElement.height);
+
+  canvasCtx.globalCompositeOperation = 'source-over';
+  drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS,
+                 {color: '#00FF00', lineWidth: 4});
+  drawLandmarks(canvasCtx, results.poseLandmarks,
+                {color: '#0000FF', lineWidth: 2});
+  canvasCtx.restore();
+
+  //grid.updateLandmarks(results.poseWorldLandmarks);
+}
+*/
+
+
+function onResults(results) {
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+  if (results.multiFaceLandmarks) {
+    //console.log(results.multiFaceLandmarks)
+    //console.log('right,',FACEMESH_RIGHT_EYE)
+    //console.log('left,',FACEMESH_LEFT_EYE)
+
+    for (const landmarks of results.multiFaceLandmarks) {
+      console.log(landmarks)
+      drawConnectors(canvasCtx, landmarks, FACEMESH_TESSELATION,
+                     {color: '#C0C0C070', lineWidth: 1});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYE, {color: '#30FF30'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_EYEBROW, {color: '#30FF30'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_RIGHT_IRIS, {color: '#30FF30'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYE, {color: '#3030FF'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_EYEBROW, {color: '#3030FF'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_LEFT_IRIS, {color: '#3030FF'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_FACE_OVAL, {color: '#E0E0E0'});
+      drawConnectors(canvasCtx, landmarks, FACEMESH_LIPS, {color: '#FF3030'});
+    }
+  }
+  canvasCtx.restore();
+}
+
+/*
+const pose = new Pose({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+}});
+pose.setOptions({
+  selfieMode: true,
+  modelComplexity: 1,
+  smoothLandmarks: false,
+  enableSegmentation: true,
+  smoothSegmentation: true,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+});
+pose.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await pose.send({image: videoElement});
+  },
+  width: 1280,
+  height: 720
+});
+camera.start();
+*/
+
+const faceMesh = new FaceMesh({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`;
+}});
+faceMesh.setOptions({
+  selfieMode: true,
+  maxNumFaces: 1,
+  refineLandmarks: true,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5,
+});
+faceMesh.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await faceMesh.send({image: videoElement});
+  },
+  width: 1280,
+  height: 720
+});
+camera.start();
+
+  </script>
+</body>
+</html>

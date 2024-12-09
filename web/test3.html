@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d/control_utils_3d.js" crossorigin="anonymous"></script>
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <video class="input_video" hidden></video>
+    <canvas class="output_canvas" width="1280px" height="720px" ></canvas>
+    <div class="landmark-grid-container"></div>
+  </div>
+  <script>
+const videoElement = document.getElementsByClassName('input_video')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+
+//const landmarkContainer = document.getElementsByClassName('landmark-grid-container')[0];
+//const grid = new LandmarkGrid(landmarkContainer);
+
+
+let pos = 0
+let timeout = 0
+
+const state = [0,0]
+
+function onResults(results) {
+  canvasCtx.save();
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+  canvasCtx.drawImage(
+      results.image, 0, 0, canvasElement.width, canvasElement.height);
+  if (results.multiHandLandmarks) {
+    const marks = results.multiHandLandmarks
+
+    for (const landmarks of results.multiHandLandmarks) {
+      drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                     {color: '#00FF00', lineWidth: 5});
+      drawLandmarks(canvasCtx, landmarks, {color: '#FF0000', lineWidth: 2});
+    }
+
+    if(results.multiHandLandmarks.length == 2){
+      if(marks[0][8].y < marks[0][5].y &&
+      marks[0][12].y < marks[0][9].y &&
+      marks[0][16].y < marks[0][13].y &&
+      marks[0][20].y < marks[0][17].y){
+
+        if(state[0] != true){
+          state[0] = true
+          console.log('open r')
+        }
+        
+      } else if(marks[0][8].y > marks[0][5].y &&
+      marks[0][12].y > marks[0][9].y &&
+      marks[0][16].y > marks[0][13].y &&
+      marks[0][20].y > marks[0][17].y){
+        if(state[0] != false){
+          state[0] = false
+          console.log('hold r')
+        }
+      }
+
+      if(marks[1][8].y < marks[1][5].y &&
+      marks[1][12].y < marks[1][9].y &&
+      marks[1][16].y < marks[1][13].y &&
+      marks[1][20].y < marks[1][17].y){
+        if(state[1] != true){
+          state[1] = true
+          console.log('open l')
+        }
+      } else if(marks[1][8].y > marks[1][5].y &&
+      marks[1][12].y > marks[1][9].y &&
+      marks[1][16].y > marks[1][13].y &&
+      marks[1][20].y > marks[1][17].y){
+        if(state[1] != false){
+          state[1] = false
+          console.log('hold l')
+        }
+      }
+    }
+
+  }
+  canvasCtx.restore();
+}
+
+const hands = new Hands({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+}});
+hands.setOptions({
+  selfieMode: true,
+  maxNumHands: 2,
+  modelComplexity: 1,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+});
+hands.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await hands.send({image: videoElement});
+  },
+  width: 1280,
+  height: 720
+});
+camera.start()
+
+  </script>
+</body>
+</html>

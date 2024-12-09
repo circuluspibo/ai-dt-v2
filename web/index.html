@@ -1,0 +1,327 @@
+<html>
+  <head>
+    <title>ACROS</title>
+    <meta charset="utf-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta content="width=device-width, initial-scale=0.68, minimum-scale=0.68, maximum-scale=0.68, user-scalable=no" name="viewport" >
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>    
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="./css/index.css" />
+   
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+    <!--
+    <link rel="stylesheet" href="./css/all.min.css" />
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose@0.4.1633558788/pose.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.min.js" crossorigin="anonymous"></script>
+
+    <!--
+    <script src="https://kit.fontawesome.com/34403b230d.js" crossorigin="anonymous"></script>  
+-->
+    <link rel="manifest" href="/manifest.json"> 
+  </head>
+  <body id="INDEX">
+    <header> <!-- popup alarm -->
+ 
+    </header>
+    <nav id="NAV" style="visibility:hidden;">
+      <!--
+      <ul>
+        <li name="passTime">10:00</li>
+        <li class="progress">
+          <input type="range" min="5" max="60" step="5" value="5"></input>
+          <progress name="progress" min="0" max="100" value="0" style="visibility:hidden"></progress>
+        </li>
+        <li name="currTime">17:00</li>
+      </ul>
+      -->
+      <button onclick="$.exit()">
+        <i class="fa-solid fa-2x fa-house"></i>
+      </button>
+      <p>
+        <!--
+        <button onclick="robot()">
+          <i class="fa-solid fa-2x fa-robot"></i>
+        </button>
+              <button onclick="help()">
+        <i class="fa-solid fa-2x fa-comment-question"></i>
+      </button>
+        -->
+      <button onclick="stop()">
+        <i class="fa-solid fa-2x fa-circle-xmark"></i>
+      </button>
+      <p>        
+      <button onclick="repeat('short')">
+        <i class="fa-solid fa-2x fa-battery-quarter"></i>
+      </button>
+      <button onclick="repeat('medium')">
+        <i class="fa-solid fa-2x fa-battery-half"></i>
+      </button>
+      <button onclick="repeat('long')">
+        <i class="fa-solid fa-2x fa-battery-full"></i>
+      </button>
+      <p>
+      <div class="progress">
+        <div class="bar"></div>
+        <span name="passTime">00:00</span>
+      </div>
+      <p>
+      <button>
+        <i class="fa-solid fa-2x fa-gauge"></i>
+      </button>
+      <button>
+        <i class="fa-solid fa-2x fa-users-viewfinder"></i>
+      </button>
+      <button>
+        <i class="fa-regular fa-2x fa-circle-check"></i>
+      </button>
+      <p>  
+      <button onclick="volume_down()">
+        <i class="fa-solid fa-2x fa-volume-low"></i>
+      </button>
+      <button onclick="volume_up()">
+        <i class="fa-solid fa-2x fa-volume-high"></i>
+      </button>
+      <p>
+      <button onclick="hotword()">
+        <i class="fa-solid fa-2x fa-microphone"></i>
+      </button>
+    </nav>
+    <main>
+      <article id='LOGIN'>
+        <div class="view">
+          <img src="./image/circulus_logo.png">
+          <p>
+          <video name="input_video" hidden></video>
+          <canvas name="output_canvas" width="720px" height="480px" >
+          </canvas>
+          <p>
+          <div class='icon'>
+            <i class="fa-solid fa-2x fa-robot"></i>
+          </div><input type="text" onclick="robot()" placeholder="로봇 일련번호를 입력해 주세요."/>
+        </div>
+      </article>
+      
+      <article id='HOME' style="visibility: hidden;"> <!--class='animate__animated animate__fadeIn'> -->
+        <!--
+        <div class='header'>
+          <span name='title'>즐거운 하루입니다!</span>
+          <span name='time'>12.31 10:00</span>
+          <span name='user'>박종건</span>
+        </div>
+        -->
+        <div class='i'>
+          <dl>
+            <dd>
+              <button class='i m' onclick="repeat('info')">
+                <img src='./icon/briefing.png'/>
+                <p>정보제공</p>
+              </button>
+              <button class='i m c_i' onclick="$.load('WEATHER')">
+                <img src='./icon/weather.png'/>
+                <p>날씨</p>
+              </button>
+              <button class='i m c_i' onclick="$.load('NEWS')">
+                <img src='./icon/news.png'/>
+                <p>뉴스</p>
+              </button>            
+              <button class='i m c_i' onclick="$.load('TRAVEL')">
+                <img src='./icon/travel.png'/>
+                <p>여행</p>
+              </button> 
+              <button class='i m c_i' onclick="$.load('TREND')">
+                <img src='./icon/trend.png'/>
+                <p>트렌드</p>
+              </button>
+              <button class='i m c_i' onclick="$.load('MOVIE')">
+                <img src='./icon/movie.png'/>
+                <p>영화순위</p>
+              </button>                
+              <!--              
+              <button class='i'>
+                <p>트렌드</p>
+                <img src='./icon/south-korea.png'/>
+              </button>
+              -->
+            </dd>
+          </dl>
+          <dl>
+            <dd>
+              <button class='i' onclick="repeat('exercise')" >
+                <img src='./icon/muscle.png'/>
+                <p>신체활동</p>
+              </button>
+              <button class='i c_e' onclick="$.load('HEAD')">
+                <img src='./icon/exchange.png'/>
+                <p>손피하기</p>
+              </button>
+              <button class='i c_e' onclick="$.load('GRAB')">
+                <img src='./icon/grab.png'/>
+                <p>사과잡기</p>
+              </button>
+              <!--              
+              <button class='i c_e' onclick="$.load('GUNS')">
+                <img src='./icon/guns.png'/>
+                <p>총알회피</p>
+              </button>
+              -->
+              <button class='i c_e' onclick="$.load('FLAG')">
+                <img src='./icon/flags.png'/>
+                <p>깃발게임</p>
+              </button> 
+              <button class='i c_e' onclick="$.load('CLAP')">
+                <img src='./icon/no-bugs.png'/>
+                <p>모기잡기</p>
+              </button>  
+              <!--              
+              <button class='i c_e' onclick="$.load('BOXING')">
+                <img src='./icon/gloves.png'/>
+                <p>권투방어</p>
+              </button>
+              -->         
+              <button class='i c_e' onclick="$.load('EXERCISE')">
+                <img src='./icon/exercise.png'/>
+                <p>건강체조</p>
+              </button>                
+            </dd>
+          </dl>          
+          <dl>
+            <dd>
+              <button class='i m' onclick="repeat('train')">
+                <img src='./icon/study.png'/>
+                <p>인지훈련</p>
+              </button>
+              <button class='i m c_t' onclick="$.load('COLOR')">
+                <img src='./icon/color.png'/>
+                <p>색상찾기</p>
+              </button>
+              <button class='i m c_t' onclick="$.load('NUMBER')">
+                <img src='./icon/number.png'/>
+                <p>숫자훈련</p>
+              </button>              
+              <button class='i m c_t' onclick="$.load('ANIMAL')">
+                <img src='./icon/animal.png'/>
+                <p>그림찾기</p>
+              </button>
+              <button class='i m c_t' onclick="$.load('PIANO')">
+                <img src='./icon/piano.png'/>
+                <p>소리훈련</p>
+              </button>              
+              <button class='i m c_t' onclick="$.load('WORD')">
+                <img src='./icon/keyboard.png'/>
+                <p>단어훈련</p>
+              </button>                                                                                 
+            </dd>
+          </dl>
+          <dl>
+            <dd>
+              <button class='i' onclick="repeat('mental')">
+                <img src='./icon/mind.png'/>
+                <p>정서케어</p>
+              </button>
+              <button class='i m c_m' onclick="$.load('LETTER')">
+                <img src='./icon/letter.png'/>
+                <p>아침편지</p>
+              </button>
+              <button class='i m c_m' onclick="$.load('SAYING')">
+                <img src='./icon/saying.png'/>
+                <p>명언</p>
+              </button>              
+              <button class='i m c_m' onclick="$.load('SOUND')">
+                <img src='./icon/sound.png'/>
+                <p>소리</p>
+              </button>                          
+              <button class='i m c_m' onclick="$.load('MUSIC')">
+                <img src='./icon/music.png'/>
+                <p>음악</p>
+              </button>  
+              <button class='i m c_m' onclick="$.load('MEDITATION')">
+                <img src='./icon/meditation.png'/>
+                <p>명상</p>
+              </button>                                         
+            </dd>
+          </dl>        
+          <!--                   
+          <dl>
+            <dd>
+              <button class='i'>
+                <p>소통</p>
+                <img src='./icon/chat.png'/>
+              </button>
+              <button class='i'>
+                <p>사진</p>
+                <img src='./icon/camera.png'/>
+              </button>
+              <button class='i'>
+                <p>음성일기</p>
+                <img src='./icon/voice-message.png'/>
+              </button>               
+              <button class='i'>
+                <p>화상대화</p>
+                <img src='./icon/videocall.png'/>
+              </button>  
+              <button class='i'>
+                <p>훈련</p>
+                <img src='./icon/chatbot.png'/>
+              </button>                                          
+            </dd>
+          </dl> 
+          -->                      
+        </div>        
+      </article>
+      <aside style="visibility:hidden">
+        <video id="video" width="720px" height="480px"></video>
+      </aside>
+    </main>
+    <footer style="visibility:hidden">
+      <table>
+        <tr class="top">
+          <td>
+            <img class="medal" src="/image/bronze.png" />
+          </td>
+          <td colspan="2"><span class="score">참 잘했어요!</span></td>
+        </tr>
+        <tr>
+          <td colspan="3" class="space"> </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="/image/review.png" />
+          </td>
+          <td>
+            <img src="/image/speed.png" />
+          </td>
+          <td>
+            <img src="/image/concentrate.png" /> 
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img class="acc" src="/image/step1.png" />
+          </td>
+          <td>
+            <img class="spd" src="/image/step2.png" />
+          </td>
+          <td>
+            <img class="cct" src="/image/step3.png" />
+          </td>
+        </tr>      
+      </table>
+    </footer>
+  </body>
+  <script src="./js/camvas.js"></script>
+  <script src="./js/pico.js"></script>
+  <script src="./js/lploc.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.3.7/mqtt.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/donutty@2.3.1/src/donutty.min.js"></script>
+  <script src="https://hammerjs.github.io/dist/hammer.min.js"></script>
+  <script src='./js/$.js'></script>
+  <script src='./js/pibo.js'></script>
+  <script src="./js/index.js"></script>
+</html>

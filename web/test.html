@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils_3d/control_utils_3d.js" crossorigin="anonymous"></script>
+  -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/pose/pose.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="container">
+    <video class="input_video" hidden></video>
+    <canvas class="output_canvas" width="1280px" height="720px" ></canvas>
+    <div class="landmark-grid-container"></div>
+  </div>
+  <script>
+const videoElement = document.getElementsByClassName('input_video')[0];
+const canvasElement = document.getElementsByClassName('output_canvas')[0];
+const canvasCtx = canvasElement.getContext('2d');
+
+//const landmarkContainer = document.getElementsByClassName('landmark-grid-container')[0];
+//const grid = new LandmarkGrid(landmarkContainer);
+
+
+let pos = 0
+let timeout = 0
+
+function onResults(results) {
+  const marks = results.poseLandmarks 
+  //console.log(results.poseLandmarks)
+
+  if (!results.poseLandmarks)
+    return
+
+  canvasCtx.save()
+  canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height)
+  canvasCtx.globalCompositeOperation = 'destination-atop'
+  canvasCtx.drawImage(results.image, 0, 0, canvasElement.width , canvasElement.height)
+
+  canvasCtx.globalCompositeOperation = 'source-over'
+  drawConnectors(canvasCtx, results.poseLandmarks, POSE_CONNECTIONS, {color: '#00FF00', lineWidth: 2})
+  drawLandmarks(canvasCtx, results.poseLandmarks, {color: '#0000FF', lineWidth: 1})
+  canvasCtx.restore()
+
+
+  const l_eye_0 = marks[1]
+  const l_eye_1 = marks[2]
+
+  const r_eye_0 = marks[4]
+  const r_eye_1 = marks[5]
+
+  if(l_eye_1.x - l_eye_0.x < 0.005 && pos != 'RE'){
+    lastTime = Date.now()
+    pos = 'RE'
+    calc('right')
+  } 
+  
+  if(r_eye_0.x - r_eye_1.x < 0.005 && pos != 'LE'){
+    lastTime = Date.now()
+    pos = 'LE'
+    calc('left')
+  } 
+
+
+  //grid.updateLandmarks(results.poseWorldLandmarks);
+}
+
+const pose = new Pose({locateFile: (file) => {
+  return `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`;
+}});
+pose.setOptions({
+  selfieMode: true,
+  modelComplexity: 1,
+  smoothLandmarks: false,
+  //enableSegmentation: true,
+  //smoothSegmentation: true,
+  minDetectionConfidence: 0.5,
+  minTrackingConfidence: 0.5
+});
+pose.onResults(onResults);
+
+const camera = new Camera(videoElement, {
+  onFrame: async () => {
+    await pose.send({image: videoElement});
+  },
+  width: 1280,
+  height: 720
+});
+camera.start();
+
+  </script>
+</body>
+</html>

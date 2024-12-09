@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>ACROS</title>
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta content="width=device-width, initial-scale=0.68, minimum-scale=0.68, maximum-scale=0.68, user-scalable=no" name="viewport" >
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <style>
+      html {
+      background-color : rgba(0,0,0,0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <footer>
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <canvas id="score"></canvas>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <canvas id="test2"></canvas>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <canvas id="test3"></canvas>
+            <canvas id="test4"></canvas>
+          </td>
+          <td></td>
+        </tr>      
+      </table>
+    </footer>    
+  </body>
+  <script>
+    const labels = [
+        'S1',
+        'S2',
+        'S3',
+        'S4',
+        'S5',
+        'S6',
+        'S7',
+        'S8',
+        'S9',
+        'S10',
+        'S1',
+        'S2',
+        'S3',
+        'S4',
+        'S5',
+        'S6',
+        'S7',
+        'S8',
+        'S9',
+        'S10',
+        'S1',
+        'S2',
+        'S3',
+        'S4',
+        'S5',
+        'S6',
+        'S7',
+        'S8',
+        'S9',
+        'S10'
+      ];
+
+      const data = {
+        labels: labels,
+        datasets: [{
+          label: 'My First dataset',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [0, 10, 5, 2, 20, 0, 10, 5, 2, 20, 0, 10, 5, 2, 20, 0, 10, 5, 2, 20, 0, 10, 5, 2, 20, 0, 10, 5, 2, 20],
+        }]
+      };
+
+      const data2 = {
+        labels: labels,
+        datasets: [{
+          label: 'My First dataset',
+          backgroundColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 99, 132)',
+          data: [0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 1,0, 1, 1, 0, 1, 0, 1, 1, 0, 1],
+        }]
+      };
+
+      const data3 = {
+        labels: ['pass','fail'],
+        datasets: [{
+          label: 'My First dataset',
+          backgroundColor: [
+          'rgb(255, 99, 132)',
+      'rgb(54, 162, 235)',
+          ],
+          borderColor : 'transparent',
+          //borderColor: 'rgb(255, 99, 132)',
+          data: [26,74],
+          hoverOffset: 4
+        }]
+      };
+
+      const myChart = new Chart(document.getElementById('score'),{
+        type: 'line',
+        data: data,
+        options: {}
+      })
+
+      const myChart2 = new Chart(document.getElementById('accuracy'),{
+        type: 'bar',
+        data: data2,
+        options: {}
+      })
+
+      const myChart3 = new Chart(document.getElementById('test2'),{
+        type: 'pie',
+        data: data3,
+        options: {}
+      })
+
+      // 총 플레이 시간 // 총 패스 / 총 실패 / 총 실수 / 평균 성공 시간 / 평균 실패 시간
+      
+  </script>
+</html>
