@@ -1,4 +1,4 @@
-let robotId = localStorage.getItem('robotId')
+let robotId = //localStorage.getItem('robotId')
 const _SYSTEM = 'ops'
 
 window.addEventListener('beforeinstallprompt', function(e) {
