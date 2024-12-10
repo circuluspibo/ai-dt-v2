@@ -8,12 +8,12 @@ f.register(require('@fastify/static'), {
 })
 
 // Declare a route
-f.get('/', function handler (request, reply) {
+f.get('/test', function handler (request, reply) {
   reply.send({ hello: 'world' })
 })
 
 // Run the server!
-f.listen({ port: 3000 }, (err) => {
+f.listen({ ip : '0.0.0.0', port: 3000 }, (err) => {
   if (err) {
     f.log.error(err)
     process.exit(1)
