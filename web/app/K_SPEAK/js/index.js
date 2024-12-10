@@ -22,7 +22,7 @@ let intv = 0
 let level = 0
 let step = 0
 let down = 10 
-const limit = [20,10,5]
+const limit = [20,15,10]
 
 let cnt = 0
 
@@ -334,6 +334,7 @@ function calc(elem, value){
 
       clearInterval(intv)
       $.query(`li[name=t${count % 10}]`).className = 'pass'
+      $.query(`li[name=t${count % 10}]`).textContent = '○'
       $.query('.img').src = '/app/COLOR/image/positive-vote.png'
 
       $.shuffle(messages)
@@ -388,6 +389,7 @@ function calc(elem, value){
 
 
     $.query(`li[name=t${count % 10}]`).className = 'fail'
+    $.query(`li[name=t${count % 10}]`).textContent = '×'
     $.query('.img').src = '/app/COLOR/image/negative-vote.png'
     state[step].scores.push([false, spendTime,unfocusTime])
     $.tts('다음번에는 좀더 잘해보는게 좋을것 같아!')

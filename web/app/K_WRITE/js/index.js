@@ -21,7 +21,7 @@ let intv = 0
 let level = 0
 let step = 0
 let down = 10 
-const limit = [20,10,5]
+const limit = [30,25,20]
 
 let cnt = 0
 
@@ -76,7 +76,7 @@ const state = [
 
 const chart = new Donutty( document.getElementById( "W_CHART" ),{ 
   color: "#2870b3",
-  max : 20,
+  max : 30,
   value : 10,
   text: function(state) {
     return state.value
@@ -127,6 +127,7 @@ export function create(){
 
   // 그리기 시작
   canvas.addEventListener('mousedown', (e) => {
+
       drawing = true;
       [lastX, lastY] = [e.offsetX, e.offsetY]; // 시작 위치 저장
   });
@@ -136,7 +137,6 @@ export function create(){
       if (!drawing) return;
 
       const [currentX, currentY] = [e.offsetX, e.offsetY];
-
       ctx.beginPath();
       ctx.moveTo(lastX, lastY);
       ctx.lineTo(currentX, currentY);
@@ -177,7 +177,8 @@ export function create(){
   // 드로잉 진행
   function draw(x, y) {
       if (!drawing) return;
-
+      ctx.strokeStyle = 'black';
+      ctx.lineWidth = 24;
       ctx.beginPath();
       ctx.moveTo(lastX, lastY);
       ctx.lineTo(x, y);
@@ -378,7 +379,7 @@ function start(isStep){
   document.querySelector('#K_WRITE td[name=t_1]').textContent = alphabet[target][0]//mapper[target]
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = '240px "Noto Sans KR"'; // 폰트 설정
-  ctx.fillStyle = 'rgb(0,0,0,1)'; // 글씨 색상
+  ctx.fillStyle = 'black'; // 글씨 색상
   ctx.textAlign = "center";
   ctx.fillText(alphabet[target][0], 450, 320); // 글씨와 출력 위치
 
@@ -386,9 +387,12 @@ function start(isStep){
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.font = '240px "Noto Sans KR"'; // 폰트 설정
-  ctx.fillStyle = 'rgb(0,0,0,0.1)'; // 글씨 색상
+  ctx.strokeStyle = 'Gainsboro';
+  ctx.lineWidth = 3;
+  ctx.fillStyle = 'white'; // 글씨 색상
   ctx.textAlign = "center";
-  ctx.fillText(alphabet[target][0], 450, 320); // 글씨와 출력 위치
+  ctx.strokeText(alphabet[target][0], 450, 320);
+  //ctx.fillText(alphabet[target][0], 450, 320); // 글씨와 출력 위치
 
   console.log(target,alphabet[target])
   console.log(alphabet[target][Object.keys(alphabet[target])[0]])
@@ -493,6 +497,7 @@ function calc(elem, value){
 
     clearInterval(intv)
     $.query(`li[name=t${count % 10}]`).className = 'pass'
+    $.query(`li[name=t${count % 10}]`).textContent = '○'
     $.query('.img').src = '/app/COLOR/image/positive-vote.png'
 
     $.shuffle(messages)
@@ -526,6 +531,7 @@ function calc(elem, value){
 
 
     $.query(`li[name=t${count % 10}]`).className = 'fail'
+    $.query(`li[name=t${count % 10}]`).textContent = '×'
     $.query('.img').src = '/app/COLOR/image/negative-vote.png'
     state[step].scores.push([false, spendTime,unfocusTime])
     $.tts('다음번에는 좀더 잘해보는게 좋을것 같아!')

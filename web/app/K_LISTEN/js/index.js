@@ -1,7 +1,3 @@
-alert(JSON.stringify(_.state))
-
-
-
 let isStart = false
 
 const alphabet = _DATA[_.state.topic]
@@ -60,7 +56,7 @@ let intv = 0
 let level = 0
 let step = 0
 let down = 10 
-const limit = [20,10,5]
+const limit = [15,10,5]
 
 let cnt = 0
 
@@ -75,7 +71,7 @@ const state = [
 
 const chart = new Donutty( document.getElementById( "L_CHART" ),{ 
   color: "#2870b3",
-  max : 20,
+  max : 15,
   value : 10,
   text: function(state) {
     return state.value
@@ -219,9 +215,9 @@ function start(isStep){
   document.querySelectorAll('#K_LISTEN td').forEach(el=>{
     const alpha = sample(Object.keys(alphabet))
     arr.push(alpha)
-   //el.style.backgroundImage = `url('/app/K_LISTEN/${alpha[0]}')`
-    //el.style.backgroundSize="100% 100%";
+
     el.textContent = alpha
+
   })
 
   target = arr.random()
@@ -320,6 +316,8 @@ function calc(elem, value){
 
     clearInterval(intv)
     $.query(`li[name=t${count % 10}]`).className = 'pass'
+    $.query(`li[name=t${count % 10}]`).textContent = '○'
+    //$.query(`li[name=t${count % 10}]`).style.backgroundImage = '/image/pass.png'
     $.query('.img').src = '/app/COLOR/image/positive-vote.png'
 
     $.shuffle(messages)
@@ -334,7 +332,7 @@ function calc(elem, value){
 
     const char = value
     $.tts(value)
-    audio.play()
+    //audio.play()
     fail.play()
 
     //elem.target.style.color = 'black'
@@ -345,7 +343,7 @@ function calc(elem, value){
     elem.target.textContent = `${value}`
     setTimeout(()=>{
       elem.target.className = ''
-      elem.target.textContent = ''
+      //elem.target.textContent = ''
       elem.target.color = ''
     },2000)
   } else {
@@ -353,6 +351,8 @@ function calc(elem, value){
 
 
     $.query(`li[name=t${count % 10}]`).className = 'fail'
+    $.query(`li[name=t${count % 10}]`).textContent = '×'
+    //$.query(`li[name=t${count % 10}]`).style.backgroundImage = '/image/fail.png'
     $.query('.img').src = '/app/COLOR/image/negative-vote.png'
     state[step].scores.push([false, spendTime,unfocusTime])
     $.tts('다음번에는 좀더 잘해보는게 좋을것 같아!')

@@ -415,3 +415,16 @@ footer td {
   text-align: center;
   width : 20%;
 }
+
+legend {
+  color : white;
+}
+
+.click {
+  background-color : rgba(0,0,0,0.2);
+  color : white;
+}
+
+.sample {
+  border-color : LightGray !important;
+}

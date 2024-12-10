@@ -460,28 +460,68 @@ $.listen = cb=>{
 
 $.setTopic = topic =>{ // 주제
   _.state.topic = topic
+  $.queryAll('fieldset[name=topic] button').forEach(elem=>{elem.className = 'w50'})
+  $.query(`fieldset[name=topic] button[name=${topic}]`).className = 'w50 click'
 }
 
 $.setType = type =>{ // 자음 / 모음
   _.state.type = type
-}
-
-$.setTutor = tutor =>{
-  _.state.tutor = tutor
-}
-
-$.setRepeat = repeat =>{ // 반복
-  _.state.repeat = repeat
+  $.queryAll('fieldset[name=type] button').forEach(elem=>{elem.className = 'w50'})
+  $.query(`fieldset[name=type] button[name=${type}]`).className = 'w50 click'
 }
 
 $.setLevel = level =>{ // 난이도
   _.state.level = level
+  $.queryAll('fieldset[name=level] button').forEach(elem=>{elem.className = 'w50'})
+  $.query(`fieldset[name=level] button[name=${level}]`).className = 'w50 click'
+}
+
+$.setTutor = tutor =>{
+  _.state.tutor = tutor
+  $.queryAll('fieldset[name=tutor] button').forEach(elem=>{elem.className = 'w50'})
+  $.query(`fieldset[name=tutor] button[name=${tutor}]`).className = 'w50 click'
+}
+
+$.setRepeat = repeat =>{ // 반복
+  _.state.repeat = repeat
+  $.queryAll('fieldset[name=repeat] button').forEach(elem=>{elem.className = 'w50'})
+  $.query(`fieldset[name=repeat] button[name=${repeat}]`).className = 'w50 click'
 }
 
 $.setTime = time =>{ //시간
   _.state.time = time
+  $.queryAll('fieldset[name=time] button').forEach(elem=>{elem.className = 'w50'})
+  $.query(`fieldset[name=time] button[name=${time}]`).className = 'w50 click'
 }
 
+
+$.getVowel = kor => {
+  const f = ['ㄱ', 'ㄲ', 'ㄴ', 'ㄷ', 'ㄸ', 'ㄹ', 'ㅁ',
+             'ㅂ', 'ㅃ', 'ㅅ', 'ㅆ', 'ㅇ', 'ㅈ', 'ㅉ',
+             'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+  const s = ['ㅏ', 'ㅐ', 'ㅑ', 'ㅒ', 'ㅓ', 'ㅔ', 'ㅕ',
+             'ㅖ', 'ㅗ', 'ㅘ', 'ㅙ', 'ㅚ', 'ㅛ', 'ㅜ',
+             'ㅝ', 'ㅞ', 'ㅟ', 'ㅠ', 'ㅡ', 'ㅢ', 'ㅣ'];
+  const t = ['', 'ㄱ', 'ㄲ', 'ㄳ', 'ㄴ', 'ㄵ', 'ㄶ',
+             'ㄷ', 'ㄹ', 'ㄺ', 'ㄻ', 'ㄼ', 'ㄽ', 'ㄾ',
+             'ㄿ', 'ㅀ', 'ㅁ', 'ㅂ', 'ㅄ', 'ㅅ', 'ㅆ',
+             'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+  const ga = 44032;
+  let uni = kor.charCodeAt(0);
+
+  uni = uni - ga;
+
+  let fn = parseInt(uni / 588);
+  let sn = parseInt((uni - (fn * 588)) / 28);
+  let tn = parseInt(uni % 28);
+
+  return {
+      f: f[fn],
+      s: s[sn],
+      t: t[tn]
+  }
+}
 
 $.message = {
   pass : [

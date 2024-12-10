@@ -124,88 +124,91 @@
             <dd style="margin-bottom:10px;">
               <fieldset name='topic' class='i m'>
                 <legend>주제</legend>
-                <button class="w50" onclick="$.setTopic('object')">
+                <button class="w50 click" name="object" onclick="$.setTopic('object')">
                   사물
                   <!--
                   <img src='./image/object.png' height="100%" style="float:left;">
                   -->
                 </button>
-                <button class="w50" onclick="$.setTopic('fruit')">
+                <button class="w50" name="fruit" onclick="$.setTopic('fruit')">
                   과일
                 </button>
-                <button class="w50" onclick="$.setTopic('animal')">
+                <button class="w50" name="animal" onclick="$.setTopic('animal')">
                   동물
                 </button>
-                <button class="w50" onclick="$.setTopic('food')">
+                <button class="w50" name="food" onclick="$.setTopic('food')">
                   음식
                 </button>                                   
               </fieldset>   
-              <fieldset class='i m'>
+              <fieldset name='tutor' class='i m'>
                 <legend>튜터</legend>
-                <button class="w50" onclick="$.setRepeat(1)">
+                <button class="w50 click" name="t0" onclick="$.setTutor('t0')">
                   기본
                 </button>
-                <button class="w50" onclick="$.setRepeat(2)">
-                  경계지능
+                <button class="w50" name="t1" onclick="$.setTutor('t1')">
+                  경계
                 </button>
-                <button class="w50" onclick="$.setRepeat(3)">
-                  경도장애
+                <button class="w50" name="t2" onclick="$.setTutor('t2')">
+                  경도
                 </button>
-                <button class="w50" onclick="$.setRepeat(5)">
-                  중증장애
+                <button class="w50" name="t3" onclick="$.setTutor('t3')">
+                  중증
                 </button>                                   
               </fieldset>
-              <fieldset class='i m'>
+              <fieldset name='level' class='i m'>
                 <legend>난이도</legend>
-                <button class="w50" onclick="$.setLevel('auto')">
+                <button class="w50 click" name='lv0' onclick="$.setLevel('lv0')">
                   자동
                 </button>
-                <button class="w50" onclick="$.setLevel('low')">
+                <button class="w50" name='lv1' onclick="$.setLevel('lv1')">
                   하
                 </button>
-                <button class="w50" onclick="$.setLevel('medium')">
+                <button class="w50" name='lv2' onclick="$.setLevel('lv2')">
                   중
                 </button>
-                <button class="w50" onclick="$.setLevel('high')">
+                <button class="w50" name='lv3' onclick="$.setLevel('lv3')">
                   상
                 </button>                                   
               </fieldset> 
-              <fieldset class='i m'>
+              <fieldset name='type' class='i m'>
                 <legend>자/모음</legend>
-                <button class="w50" onclick="$.setType('jaeum')">
+                <button class="w50 click" name='jaeum' onclick="$.setType('jaeum')">
                   자음
                 </button>
-                <button class="w50" onclick="$.setType('moeum')">
+                <button class="w50" name='moeum' onclick="$.setType('moeum')">
                   모음
-                </button>                                   
+                </button>   
+                <button class="w50" name='word' onclick="$.setType('word')">
+                  단어
+                </button>                                                   
               </fieldset>                                               
-              <fieldset class='i m'>
+              <fieldset name='time' class='i m'>
                 <legend>시간</legend>
-                <button class="w50" onclick="$.setTime(5)">
+                <button class="w50 click" name='t5' onclick="$.setTime('t5')">
                   5
                 </button>
-                <button class="w50" onclick="$.setTime(10)">
+                <button class="w50" name='t10' onclick="$.setTime('t10')">
                   10
                 </button>
-                <button class="w50" onclick="$.setTime(15)">
+                <button class="w50" name='t15' onclick="$.setTime('t15')">
                   15
                 </button>
-                <button class="w50" onclick="$.setTime(20)">
+                <button class="w50" name='t20' onclick="$.setTime('t20')">
                   20
                 </button>                                   
               </fieldset>
-              <fieldset class='i m'>
+              <fieldset name='repeat' class='i m'>
                 <legend>반복</legend>
-                <button class="w50" onclick="$.setRepeat(1)">
+                <button class="w50 click" name='r1' onclick="$.setRepeat('r1')">
                   1
                 </button>
-                <button class="w50" onclick="$.setRepeat(2)">
+                <button class="w50" name='r2' onclick="$.setRepeat('r2')">
                   2
                 </button>
-                <button class="w50" onclick="$.setRepeat(3)">
+                <button class="w50" name='r3' onclick="$.setRepeat('r3')">
                   3
                 </button>
-                <button class="w50" onclick="$.setRepeat(5)">
+                <button class="w50" name='r5' onclick="$.setRepeat('r5')">
                   5
                 </button>                                   
               </fieldset>
@@ -297,17 +300,18 @@
               <button class='i c_e' onclick="$.load('CLAP')">
                 <img src='./icon/no-bugs.png'/>
                 <p>모기잡기</p>
-              </button>  
-              <!--              
+              </button>                
               <button class='i c_e' onclick="$.load('BOXING')">
                 <img src='./icon/gloves.png'/>
                 <p>권투방어</p>
               </button>
-              -->         
+               
+               <!--     
               <button class='i c_e' onclick="$.load('EXERCISE')">
                 <img src='./icon/exercise.png'/>
                 <p>건강체조</p>
-              </button>                
+              </button>
+               -->                  
             </dd>
           </dl>          
           <dl>
