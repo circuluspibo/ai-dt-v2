@@ -141,10 +141,15 @@ h1 {
   margin-top : 128px;
   margin-left: auto;
   margin-right : auto;
-  width : 256px;
-  height : 256px;
+  width : 320px;
+  height : 320px;
   border-radius: 16px;
   border : 12px solid rgba(255,255,255,0.5); 
+}
+
+#NUMBER div[name=target] img { 
+  text-align: center;
+  padding-top: 36px;
 }
 
 #NUMBER .left, #NUMBER .right {
@@ -178,7 +183,7 @@ h1 {
   width: 420px;
   height: 240px;
   bottom: 10px;
-  right: 0;
+  left: 0;
   border-radius: 20px;
   margin: 15px;
 }
@@ -186,6 +191,11 @@ h1 {
 #NUMBER div.img {
   width: 100%;
   text-align: center;
-  margin-top: 20%;
+  margin-top: 10%;
   float : left;
+}
+
+#NUMBER .right video { 
+  width: calc(100% - 55px);
+  border-radius : 10px;
 }

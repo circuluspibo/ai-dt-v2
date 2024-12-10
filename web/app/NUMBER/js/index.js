@@ -289,7 +289,7 @@ function calc(elem,value){
       cnt--
       if(cnt == 0){
         $.query(`li[name=t${count % 10}]`).className = 'pass'
-        $.query('.right  img').src = '/app/COLOR/image/positive-vote.png'
+        //$.query('.right  img').src = '/app/COLOR/image/positive-vote.png'
 
         clearInterval(intv)
         $.shuffle(messages)
@@ -320,7 +320,7 @@ function calc(elem,value){
     if(pibo && pibo.motion)
       pibo.motion('sad',{ cycle : 1})
     $.query(`li[name=t${count % 10}]`).className = 'fail'
-    $.query('.right img').src = '/app/COLOR/image/negative-vote.png'
+   // $.query('.right img').src = '/app/COLOR/image/negative-vote.png'
     state[step].scores.push([false, spendTime,unfocusTime])
     pibo.tell('다음번에는 좀더 잘해보는게 좋을것 같아!')
 

@@ -240,7 +240,7 @@ function calc(elem,value){
     if( map[value] == cnt){
       clearInterval(intv)
       $.query(`li[name=t${count % 10}]`).className = 'pass'
-      $.query('img').src = '/app/COLOR/image/positive-vote.png'
+      //$.query('img').src = '/app/COLOR/image/positive-vote.png'
       complete.play()
 
       if(pibo){
@@ -268,7 +268,7 @@ function calc(elem,value){
     clearInterval(intv)
 
     $.query(`li[name=t${count % 10}]`).className = 'fail'
-    $.query('img').src = '/app/COLOR/image/negative-vote.png'
+    //$.query('img').src = '/app/COLOR/image/negative-vote.png'
     state[step].scores.push([false, spendTime,unfocusTime])
 
     if(pibo){

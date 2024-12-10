@@ -20,7 +20,29 @@
     <section class="view">
       <div class='left'>
         <div id="ANIMAL_D" dnt></div>
-        <div name='target'></div>
+        <div class="score">
+          <ul class="step">
+            <li name="s0"></li>
+            <li name="s1"></li>
+            <li name="s2"></li>
+          </ul>  
+          <ul class="check">
+            <li name="t0"></li>
+            <li name="t1"></li>
+            <li name="t2"></li>
+            <li name="t3"></li>
+            <li name="t4"></li>
+            <li name="t5"></li>
+            <li name="t6"></li>
+            <li name="t7"></li>
+            <li name="t8"></li>
+            <li name="t9"></li>                    
+          </ul>      
+        </div>
+        <div class="view">
+          <video name="input_video" hidden></video>
+          <canvas name="output_canvas" width="460px" height="250px" ></canvas>
+        </div> 
       </div>
       <div class='main'>
         <table>
@@ -42,32 +64,14 @@
         </table>
       </div>
       <div class='right'>
-        <div class="score">
-          <ul class="step">
-            <li name="s0"></li>
-            <li name="s1"></li>
-            <li name="s2"></li>
-          </ul>  
-          <ul class="check">
-            <li name="t0"></li>
-            <li name="t1"></li>
-            <li name="t2"></li>
-            <li name="t3"></li>
-            <li name="t4"></li>
-            <li name="t5"></li>
-            <li name="t6"></li>
-            <li name="t7"></li>
-            <li name="t8"></li>
-            <li name="t9"></li>                    
-          </ul>      
-        </div>
         <div class="img">
+          <video controls controlslist="nodownload" class="output" id="w_human" poster="./image/main.gif" src="https://oe-napi.circul.us/v1/txt2human?text=%EA%B8%B0%EC%97%AD%20%EA%B8%B0%EC%B0%A8&voice=main&type=mp4&lang=ko" autoplay="" onclick="human()"></video>
+
+          <div name='target'></div>
+          <!--
           <img src="/app/COLOR/image/ask.png">
-        </div>
-        <div class="view">
-          <video name="input_video" hidden></video>
-          <canvas name="output_canvas" width="460px" height="250px" ></canvas>
-        </div>        
+          -->
+        </div>       
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/donutty@2.3.1/src/donutty.min.js"></script>
