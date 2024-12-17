@@ -72,9 +72,9 @@ export function create(){
     waveColor: '#7f58a1',
     height : document.querySelector('#wave').offsetHeight,
     progressColor: '#2d1333',
-    //barWidth: 5,
-    //barGap: 1,
-    //barRadius: 2,
+    barWidth: 5,
+    barGap: 1,
+    barRadius: 2,
     //url : '/v1/a/audio/646b5736386a05de196e4b58'
   });
   
@@ -186,6 +186,7 @@ function onResults(results) {
 
 export function destroy(){
   clearInterval(intv)
+  document.querySelector('#wave').innerHTML = ``
   //clearTimeout(timeout)
   //music.pause()
   //music.currentTime = 0
