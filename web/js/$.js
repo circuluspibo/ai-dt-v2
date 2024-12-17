@@ -163,6 +163,8 @@ let isExit = false
 let exitTime = 0
 
 $.exit = (text = '홈 화면으로 돌아갈께.')=>{
+  if (!document.fullscreenElement)
+    document.documentElement.requestFullscreen()
 
   if(Date.now() - exitTime < 3000)
     return
@@ -422,14 +424,14 @@ $.listen = cb=>{
         const fd = new FormData();
         fd.append("file", new Blob(chunks, { type: 'audio/ogg;codecs=opus' }), 'voice.ogg')
       
-        fetch(`/v1/stt`,{
+        fetch(`https://oe-sapi.circul.us/v1/stt`, {
           method: 'POST',
           body: fd
         }).then(async res=>{
           const result = await res.json()
           console.log('speech end---',result)
           if(cb)
-            cb(result.data)
+            cb(result.data.text)
         })
       }
 

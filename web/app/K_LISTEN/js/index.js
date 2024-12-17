@@ -91,6 +91,7 @@ export function create(){
  
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   
+
   step = 0
   count = 0
 

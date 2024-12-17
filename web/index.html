@@ -4,11 +4,12 @@
     <meta charset="utf-8">
     <meta name="mobile-web-app-capable" content="yes">
     <meta content="width=device-width, initial-scale=0.68, minimum-scale=0.68, maximum-scale=0.68, user-scalable=no" name="viewport" >
-
+    <!--
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>    
- 
+    -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <script src="https://unpkg.com/wavesurfer.js"></script>
     <link rel="stylesheet" href="./css/index.css" />
    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
@@ -231,10 +232,10 @@
                 <img src='./icon/creative-writing.png'/>
                 <p>받아쓰기</p>
               </button> 
-              <button class='i m c_i' onclick="$.load('K_WORD')">
-                <img src='./icon/hanbok.png'/>
-                <p>단어연습</p>
-              </button>
+              <button class='i m c_t' onclick="$.load('WORD')">
+                <img src='./icon/keyboard.png'/>
+                <p>단어훈련</p>
+              </button>     
               <button class='i m c_i' onclick="$.load('K_STORY')">
                 <img src='./icon/fairytale.png'/>
                 <p>이야기</p>
@@ -295,10 +296,7 @@
                 <img src='./icon/piano.png'/>
                 <p>소리훈련</p>
               </button>              
-              <button class='i m c_t' onclick="$.load('WORD')">
-                <img src='./icon/keyboard.png'/>
-                <p>단어훈련</p>
-              </button>                                                                                 
+                                                                            
             </dd>
           </dl>
           <dl>
@@ -311,6 +309,14 @@
                 <img src='./icon/exchange.png'/>
                 <p>손피하기</p>
               </button>
+              <button class='i c_e' onclick="$.load('BOXING')">
+                <img src='./icon/gloves.png'/>
+                <p>권투방어</p>
+              </button>
+              <button class='i c_e' onclick="$.load('FLAG')">
+                <img src='./icon/flags.png'/>
+                <p>깃발게임</p>
+              </button> 
               <button class='i c_e' onclick="$.load('GRAB')">
                 <img src='./icon/grab.png'/>
                 <p>사과잡기</p>
@@ -321,18 +327,12 @@
                 <p>총알회피</p>
               </button>
               -->
-              <button class='i c_e' onclick="$.load('FLAG')">
-                <img src='./icon/flags.png'/>
-                <p>깃발게임</p>
-              </button> 
+
               <button class='i c_e' onclick="$.load('CLAP')">
                 <img src='./icon/no-bugs.png'/>
                 <p>모기잡기</p>
               </button>                
-              <button class='i c_e' onclick="$.load('BOXING')">
-                <img src='./icon/gloves.png'/>
-                <p>권투방어</p>
-              </button>
+
                
                <!--     
               <button class='i c_e' onclick="$.load('EXERCISE')">

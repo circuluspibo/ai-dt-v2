@@ -13,9 +13,10 @@ f.get('/test', function handler (request, reply) {
 })
 
 // Run the server!
-f.listen({ ip : '0.0.0.0', port: 3000 }, (err) => {
+f.listen({ ip: '0.0.0.0', port: 3000 }, function (err, address) {
   if (err) {
-    f.log.error(err)
+    fastify.log.error(err)
     process.exit(1)
   }
+  // Server is now listening on ${address}
 })

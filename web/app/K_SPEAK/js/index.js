@@ -1,3 +1,6 @@
+import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
+import RecordPlugin from 'https://unpkg.com/wavesurfer.js@7/dist/plugins/record.esm.js'
+
 let isStart = false
 const alphabet = _DATA[_.state.topic]
 const mapper = _MAPPER
@@ -25,7 +28,7 @@ let down = 10
 const limit = [20,15,10]
 
 let cnt = 0
-
+let form = 0
 let count = 0
 let initTime = 0
 
@@ -50,6 +53,9 @@ const music = new Audio('/music/train.mp3')
 music.volume = 0.5
 //music.volume = 50
 
+let wavesurfer = 0
+let rec = 0
+
 export function create(){
   cnt = 0
   isStart = false
@@ -59,6 +65,27 @@ export function create(){
   
   step = 0
   count = 0
+
+
+  wavesurfer = WaveSurfer.create({
+    container: '#wave',
+    waveColor: '#7f58a1',
+    height : document.querySelector('#wave').offsetHeight,
+    progressColor: '#2d1333',
+    //barWidth: 5,
+    //barGap: 1,
+    //barRadius: 2,
+    //url : '/v1/a/audio/646b5736386a05de196e4b58'
+  });
+  
+  rec = wavesurfer.registerPlugin(RecordPlugin.create())
+  
+  rec.on('record-end', (blob) => {
+    //isFile = true
+    //form = new FormData();
+    //form.append("file", blob, 'voice.wav')
+  })
+
 
   setLevel()
 
@@ -83,13 +110,30 @@ export function create(){
 }
 
 
+let isListen = false
 
 export function event(){
 
-  $('td[name=t_2]').addEventListener('click',elem=>{
-    $('td[name=t_2]').
+  $.query('td[name=t_1]').addEventListener('click',elem=>{
+    console.log('listen start....')
+
+    if(isListen){
+      isListen = false
+      rec.stopRecording()
+    } else {
+      isListen = true
+      rec.startRecording()
+    }
+
     $.listen(out=>{
       console.log('listend,',out)
+
+      //if (rec.isRecording()) {
+      //  rec.stopRecording()
+      //} else {
+      //rec.stopRecording() //record.startRecording({ deviceId })
+      //}
+
       calc(elem, out.trim())
     })
   })
@@ -174,7 +218,7 @@ function start(isStep){
   cnt = 0
 
   document.querySelectorAll('#K_SPEAK td').forEach(e=>{ e.className = ''})
-
+  wavesurfer.empty()
   startTime = Date.now()
   unfocusTime = 0
 

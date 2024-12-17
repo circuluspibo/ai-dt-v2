@@ -147,17 +147,18 @@ li {
 }
 
 #K_SPEAK div[name=target] {
-  margin-top: 128px;
+  margin-top: 64px;
+  margin-bottom : 64px;
   margin-left: auto;
   margin-right: auto;
-  width: 360px;
-  height: 360px;
+  width: 380px;
+  height: 380px;
   color: white;
   border-radius: 16px;
   border: 12px solid rgba(255,255,255,0.5);
   text-align: center;
   font-size: 64px;
-  line-height: 360px;
+  line-height: 380px;
 }
 
 #K_SPEAK div[name=target] img {
