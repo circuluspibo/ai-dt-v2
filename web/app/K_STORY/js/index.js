@@ -53,17 +53,18 @@ export function create(){
   canvasElement = $.query('canvas')
   canvasCtx = canvasElement.getContext('2d');
 
-  //$.pose.onResults(onResults)
-  
+  $.faceMesh.onResults(onResults);
+
   $.camera = new Camera(videoElement, {
     onFrame: async () => {
-      //await $.pose.send({image: videoElement});
+      await $.faceMesh.send({image: videoElement});
     },
-    width: 480,
-    height: 270
-  })
+    width: 460,
+    height: 250
+  });
+  $.camera.start();
 
-  $.camera.start()
+  start()
 
   $.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
 
@@ -176,7 +177,7 @@ function calc(side){
   console.log(step, state)
   state[step].scores.push([true, spendTime,unfocusTime])
 
-  $.tts('다음 페이지를 읽어보자.')
+  //$.tts('다음 페이지를 읽어보자.')
 
 
   /*
@@ -244,6 +245,8 @@ function next(){
     $.tts(scripts[step])
     $.query('img').src = pages[step]
     ++step
+
+    start(true) // 단계 소개
   }
 
 
