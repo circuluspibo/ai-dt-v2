@@ -218,7 +218,8 @@ const pages = [
   '/app/K_STORY/image/story1.jpg',
   '/app/K_STORY/image/story2.jpg',
   '/app/K_STORY/image/story3.jpg',
-  '/app/K_STORY/image/story4.jpg'
+  '/app/K_STORY/image/story4.jpg',
+  '/app/K_STORY/image/story5.jpg',
 ]
 
 const scripts = [
