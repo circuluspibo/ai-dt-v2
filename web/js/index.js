@@ -314,7 +314,8 @@ function onResults(results) {
     //alert('test')
   }
   
-  if(Date.now() - lastTime > 3000){
+  /*
+  if(Date.now() - lastTime > 2000){
     lastTime = Date.now()
     //$.bg.play()
     $.camera.stop()
@@ -332,6 +333,7 @@ function onResults(results) {
     },1500)
     return
   }
+  */
 }
 
 const videoElement = document.querySelector('#login video')
