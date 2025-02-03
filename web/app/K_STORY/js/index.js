@@ -53,6 +53,8 @@ export function create(){
   canvasElement = $.query('canvas')
   canvasCtx = canvasElement.getContext('2d')
 
+  alert(_.id)
+
   $.faceMesh.onResults(onResults);
 
   $.camera = new Camera(videoElement, {
@@ -61,8 +63,9 @@ export function create(){
     },
     width: 460,
     height: 250
-  });
-  $.camera.start();
+  })
+
+  $.camera.start()
 
 
   $.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')

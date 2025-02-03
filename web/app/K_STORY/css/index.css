@@ -50,7 +50,7 @@
 #K_STORY h2 {
   color : black;
   font-size : 30px;
-  line-height : 0;
+  line-height : 1.2;
   margin : 20px;
   width : calc(100% - 40px);
 }
