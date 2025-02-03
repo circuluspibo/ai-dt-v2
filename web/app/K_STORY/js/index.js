@@ -246,7 +246,7 @@ function next(){
     $.query('img').src = pages[step]
     ++step
 
-    start(true) // 단계 소개
+    start() // 단계 소개
   }
 
 
