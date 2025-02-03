@@ -44,7 +44,7 @@ export function create(){
   step = 0
   count = 0
   isStart = false
-  music.play()
+  //music.play()
   setLevel()
   
   isFinish = false
@@ -70,6 +70,7 @@ export function create(){
 
     if(down == 0)
       clearInterval(intv)
+    
   },1000)
 
 }
@@ -163,6 +164,18 @@ function calc(side){
   clearInterval(intv)
   const spendTime = Date.now() - startTime
 
+  setTimeout(()=>{
+    //$.query(`td.${target}`).classList.remove('pass')
+    next()
+  },1000)
+
+  console.log(step, state)
+  state[step].scores.push([true, spendTime,unfocusTime])
+
+  pibo.tell('다음 페이지를 읽어보자.')
+
+
+  /*
   console.log(side,count)
 
   if(target == side){
@@ -194,9 +207,44 @@ function calc(side){
 
     pibo.tell('다음번에는 좀더 잘해보는게 좋을것 같아!')
   }
+  */
 }
 
+const pages = [
+  'image/story1.jpg',
+  'image/story2.jpg',
+  'image/story3.jpg',
+  'image/story4.jpg'
+]
+
+const scripts = [
+  '어느 활짝 갠 겨울날에 개미들이 자신들이 여름철에 모은 씨앗 들을 말리고 있었어요.',
+  '<speak>그때 굶주림에 다 죽어가는 베짱이 한 마리가 지나가다 <voice name="man4">먹을 걸 좀 만 나눠주겠니?</voice> 라며 빌었어요.</speak>',
+  '<speak>개미들이 베짱이에게 물었어요. <voice name="woman8">그럼 넌 여름철에 음식을 모아두지 않고 뭘 한 거니?</voice> </speak>',
+  '<speak>베짱이가 대답했어요. <voice name="man4">놀 시간도 부족하던걸. 매일같이 노래하느라 다 보냈지.</voice> </speak>',
+  '<speak>그러자 개미들이 조롱하며 말했어요. <voice name="woman8">여름철 내내 노래나 하고 있을 정도로 어리석다면, 그럼 겨울엔 밥을 거르면서까지 춤만 춰대면 되겠네요.</voice> </speak>',
+]
+
 function next(){
+  pos = 0
+  ++count
+
+  if(count == 4){
+    pibo.tell(`다음번에 더 재미난 이야기로 찾아갈게!`)
+    document.querySelectorAll(`#${_.id} ul.check > li`).forEach(elem=>{elem.className = ''})
+
+    setTimeout($.exit,10000)
+  } else {
+    pibo.tell(scripts[step])
+    $.query('img').src = pages[step]
+    ++step
+  }
+
+
+}
+
+
+function nextx(){
   pos = 0
 
   if(++count % 10 == 0){ // 단계 올림
