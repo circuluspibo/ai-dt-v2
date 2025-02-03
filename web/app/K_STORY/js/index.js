@@ -61,21 +61,12 @@ export function create(){
     },
     width: 460,
     height: 250
-  });
-  $.camera.start();
+  })
 
-  start()
+  $.camera.start()
+
 
   $.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
-
-  intv = setInterval(()=>{
-    chart.set( "value", --down )
-
-    if(down == 0)
-      clearInterval(intv)
-    
-  },1000)
-
 
   start()
 }
