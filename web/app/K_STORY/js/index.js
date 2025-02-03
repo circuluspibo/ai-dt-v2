@@ -4,7 +4,7 @@ let pos = 0
 let timeout = 0
 let intv = 0
 
-let level = 0
+let level = 1
 let step = 0
 let down = 10 
 const limit = [20,10,5]
@@ -51,7 +51,7 @@ export function create(){
 
   const videoElement = $.query('video')
   canvasElement = $.query('canvas')
-  canvasCtx = canvasElement.getContext('2d');
+  canvasCtx = canvasElement.getContext('2d')
 
   $.faceMesh.onResults(onResults);
 
@@ -61,9 +61,8 @@ export function create(){
     },
     width: 460,
     height: 250
-  })
-
-  $.camera.start()
+  });
+  $.camera.start();
 
 
   $.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
@@ -124,8 +123,8 @@ function start(isStep){
 }
 
 function setLevel(){
-  let lv = 0
-  let type = '초급'
+  let lv = 1
+  let type = '중급'
   let passed = 0
 
   if(step != 0){
