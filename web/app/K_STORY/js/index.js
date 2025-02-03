@@ -133,8 +133,8 @@ function start(isStep){
 }
 
 function setLevel(){
-  let lv = 1
-  let type = '중급'
+  let lv = 0
+  let type = '초급'
   let passed = 0
 
   if(step != 0){
@@ -169,8 +169,9 @@ function calc(side){
   clearInterval(intv)
   const spendTime = Date.now() - startTime
 
+  $.query(`li[name=t${count % 10}]`).className = 'pass'
   $.query(`li[name=t${count % 10}]`).textContent = '○'
-  setTimeout(next,2000)
+  next()
 
   console.log(step, state)
   state[step].scores.push([true, spendTime,unfocusTime])
@@ -234,7 +235,7 @@ function next(){
 
   console.log('next',step)
 
-  if(count == 4){
+  if(count == 5){
     $.tts(`다음번에 더 재미난 이야기로 찾아갈게!`)
     document.querySelectorAll(`#${_.id} ul.check > li`).forEach(elem=>{elem.className = ''})
 
