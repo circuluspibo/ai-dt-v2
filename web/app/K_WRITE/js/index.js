@@ -114,6 +114,8 @@ export function create(){
 
   // 모드 전환 버튼 이벤트
   modeButton.addEventListener('click', () => {
+    calc($.query('td[name=write]'), alphabet[target][Object.keys(alphabet[target])[0]])
+    /*
     if(isErasing){
       isErasing = false;
       ctx.strokeStyle = 'black'; // 드로잉 색상
@@ -123,6 +125,7 @@ export function create(){
       ctx.globalCompositeOperation = 'destination-out'; // 지우기 모드
       ctx.lineWidth = 32; // 지우개 크기 설정
     }
+    */
   });
 
   // 그리기 시작
@@ -441,8 +444,8 @@ function start(isStep){
     },1000)
     */
 
-    if(similarityPercentage > 90)
-      calc($.query('td[name=write]'), alphabet[target][Object.keys(alphabet[target])[0]])
+    //if(similarityPercentage > 90)
+    //  calc($.query('td[name=write]'), alphabet[target][Object.keys(alphabet[target])[0]])
 
     if(down == 0)
       calc()
