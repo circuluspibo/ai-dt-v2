@@ -65,7 +65,7 @@ export function create(){
 
   $.camera.start()
 
-  pibo.tell('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
+  $.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
 
   intv = setInterval(()=>{
     chart.set( "value", --down )
@@ -176,7 +176,7 @@ function calc(side){
   console.log(step, state)
   state[step].scores.push([true, spendTime,unfocusTime])
 
-  pibo.tell('다음 페이지를 읽어보자.')
+  $.tts('다음 페이지를 읽어보자.')
 
 
   /*
@@ -215,10 +215,10 @@ function calc(side){
 }
 
 const pages = [
-  'image/story1.jpg',
-  'image/story2.jpg',
-  'image/story3.jpg',
-  'image/story4.jpg'
+  '/app/K_STORY/image/story1.jpg',
+  '/app/K_STORY/image/story2.jpg',
+  '/app/K_STORY/image/story3.jpg',
+  '/app/K_STORY/image/story4.jpg'
 ]
 
 const scripts = [
@@ -236,12 +236,12 @@ function next(){
   console.log('next',step)
 
   if(count == 4){
-    pibo.tell(`다음번에 더 재미난 이야기로 찾아갈게!`)
+    $.tts(`다음번에 더 재미난 이야기로 찾아갈게!`)
     document.querySelectorAll(`#${_.id} ul.check > li`).forEach(elem=>{elem.className = ''})
 
     setTimeout($.exit,10000)
   } else {
-    pibo.tell(scripts[step])
+    $.tts(scripts[step])
     $.query('img').src = pages[step]
     ++step
   }
