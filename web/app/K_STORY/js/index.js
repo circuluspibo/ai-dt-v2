@@ -65,6 +65,8 @@ export function create(){
 
   $.camera.start()
 
+  pibo.tell('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
+
   intv = setInterval(()=>{
     chart.set( "value", --down )
 
@@ -73,6 +75,8 @@ export function create(){
     
   },1000)
 
+
+  start()
 }
 
 
@@ -228,6 +232,8 @@ const scripts = [
 function next(){
   pos = 0
   ++count
+
+  console.log('next',step)
 
   if(count == 4){
     pibo.tell(`다음번에 더 재미난 이야기로 찾아갈게!`)
