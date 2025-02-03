@@ -43,6 +43,16 @@
   padding : 0;
 }
 
+#K_STORY img {
+  height : 800px;
+}
+
+#K_STORY h2 {
+  color : black;
+  font-size : 24px;
+  line-height : 0;
+}
+
 #K_STORY table {
   margin : 10px;
   width : calc(100% - 20px);

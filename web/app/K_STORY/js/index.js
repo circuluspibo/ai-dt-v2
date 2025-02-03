@@ -164,7 +164,7 @@ function calc(side){
   next()
 
   console.log(step, state)
-  state[step].scores.push([true, spendTime,unfocusTime])
+  //state[step].scores.push([true, spendTime,unfocusTime])
 
   //$.tts('다음 페이지를 읽어보자.')
 
@@ -234,6 +234,8 @@ function next(){
   } else {
     $.tts(scripts[step])
     $.query('img').src = pages[step]
+    $.query('h2[name=script]').textContent = scripts[step].replace(/<[^>]*>?/g, '')
+
     ++step
 
     start() // 단계 소개
