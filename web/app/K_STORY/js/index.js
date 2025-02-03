@@ -4,7 +4,7 @@ let pos = 0
 let timeout = 0
 let intv = 0
 
-let level = 1
+let level = 0
 let step = 0
 let down = 10 
 const limit = [20,10,5]
@@ -169,10 +169,8 @@ function calc(side){
   clearInterval(intv)
   const spendTime = Date.now() - startTime
 
-  setTimeout(()=>{
-    //$.query(`td.${target}`).classList.remove('pass')
-    next()
-  },1000)
+  $.query(`li[name=t${count % 10}]`).textContent = '○'
+  setTimeout(next,2000)
 
   console.log(step, state)
   state[step].scores.push([true, spendTime,unfocusTime])
