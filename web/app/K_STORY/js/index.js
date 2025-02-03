@@ -235,11 +235,11 @@ function next(){
 
   console.log('next',step)
 
-  if(count == 5){
+  if(count == 6){
     $.tts(`다음번에 더 재미난 이야기로 찾아갈게!`)
     document.querySelectorAll(`#${_.id} ul.check > li`).forEach(elem=>{elem.className = ''})
 
-    setTimeout($.exit,10000)
+    setTimeout($.exit,5000)
   } else {
     $.tts(scripts[step])
     $.query('img').src = pages[step]
