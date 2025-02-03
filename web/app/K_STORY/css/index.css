@@ -49,8 +49,10 @@
 
 #K_STORY h2 {
   color : black;
-  font-size : 24px;
+  font-size : 30px;
   line-height : 0;
+  margin : 20px;
+  width : calc(100% - 40px);
 }
 
 #K_STORY table {
