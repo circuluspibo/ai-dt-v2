@@ -53,7 +53,6 @@ export function create(){
   canvasElement = $.query('canvas')
   canvasCtx = canvasElement.getContext('2d')
 
-  alert(_.id)
 
   $.faceMesh.onResults(onResults);
 
