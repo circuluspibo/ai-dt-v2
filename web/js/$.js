@@ -424,7 +424,7 @@ $.listen = cb=>{
         const fd = new FormData();
         fd.append("file", new Blob(chunks, { type: 'audio/ogg;codecs=opus' }), 'voice.ogg')
       
-        fetch(`https://222.112.0.215:59501/v1/stt`, { // https://oe-sapi.circul.us/v1/stt
+        fetch(`https://oe-sapi.circul.us/v1/stt`, { // https://oe-sapi.circul.us/v1/stt // https://222.112.0.215:59501/v1/stt
           method: 'POST',
           body: fd
         }).then(async res=>{
