@@ -56,6 +56,10 @@ export function create(){
 
   alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
   mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+
+  if(_.lang = 'en'){
+    _.state.topic = 'en'
+  }
  
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   
