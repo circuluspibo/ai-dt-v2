@@ -56,6 +56,9 @@ $.load = async (bot, data , type='slide', text=bot)=>{
   isLoad = false
 
   _.lang = data
+
+  alert(_.lang)
+
   //$.tts(text)
   $.bg.pause()
   if(navigator.vibrate)
