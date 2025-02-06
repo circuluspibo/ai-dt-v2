@@ -101,17 +101,20 @@ export function create(){
 
   if(_.lang = 'en'){
 
-    for(const item of $.queryAll('tr[name=en]').entries)
+    $.queryAll('tr[name=en]').forEach(item=>{
       item.style.display = ''
-    for(const item of $.queryAll('tr[name=ko]').entries)
+    })
+    $.queryAll('tr[name=ko]').forEach(item=>{
       item.style.display = 'none'
+    })
     _.state.topic = 'en'
   } else {
-    for(const item of $.queryAll('tr[name=ko]').entries)
+    $.queryAll('tr[name=ko]').forEach(item=>{
       item.style.display = ''
-    for(const item of $.queryAll('tr[name=en]').entries)
+    })
+    $.queryAll('tr[name=en]').forEach(item=>{
       item.style.display = 'none'
-  }
+    })  }
 
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.textContent = ''})
