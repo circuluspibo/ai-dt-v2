@@ -93,7 +93,7 @@ const music = new Audio('/music/train.mp3')
 music.volume = 0.5
 
 export function create(){
-  music.play()
+ // music.play()
 
 
   alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
