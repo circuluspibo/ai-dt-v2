@@ -10,8 +10,12 @@ const stat = {
   duration : 0, // 총 시간
 }
 
-const alphabet = _DATA[_.state.topic]
-const mapper = _MAPPER
+let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+
+if(_.lang = 'en'){
+  _.state.topic = 'en'
+}
 /*{
 	"ㄱ" : ["김밥","계란프라이","감자튀김"],
 	"ㄴ" : ["냉면","녹차"],
@@ -90,6 +94,24 @@ music.volume = 0.5
 
 export function create(){
   music.play()
+
+
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+
+  if(_.lang = 'en'){
+
+    for(const item of $.queryAll('tr[name=en]').entries)
+      item.style.display = ''
+    for(const item of $.queryAll('tr[name=ko]').entries)
+      item.style.display = 'none'
+    _.state.topic = 'en'
+  } else {
+    for(const item of $.queryAll('tr[name=ko]').entries)
+      item.style.display = ''
+    for(const item of $.queryAll('tr[name=en]').entries)
+      item.style.display = 'none'
+  }
 
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.textContent = ''})
