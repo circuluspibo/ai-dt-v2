@@ -194,17 +194,18 @@ function start(isStep){
   const target = Object.keys(alphabet).random()
 
   let str = alphabet[target][0]
-    if(_.lang == 'ko')
+  if(_.lang == 'ko'){
 
     for(let i = 0 ; i < alphabet[target][0].length ; i++){
       const v = $.getVowel(alphabet[target][0].charAt(i))
       str += v.f+v.s+v.t
     }
+  }
 
   console.log('====vowel',str)
   item = { k : str, value : alphabet[target][0]}
 
-  const eng = new Audio(`http://oe-sapi.circul.us/tts?text=${item.k}&lang=ko`)
+  const eng = new Audio(`http://oe-sapi.circul.us/tts?text=${item.k}&lang=${_.lang}`)
   eng.play()
 
   for(let i = 0 ; i < item.k.length ; i++){
@@ -400,7 +401,7 @@ function calc(elem, key){
       $.query(`li[name=t${count % 10}]`).className = 'pass'
       state[step].scores.push([true, spendTime,unfocusTime])
 
-      const ko = new Audio(`https://s-tapi.circul.us/v1/tts?text=${item.v}`)
+      const ko = new Audio(`https://s-tapi.circul.us/v1/tts?text=${item.v}&lang=${_.lang}`)
       ko.play()
 
       complete.play()
