@@ -52,10 +52,10 @@ hammertime.on('swipedown', function(ev) {
 
 let isLoad = false
 
-$.load = async (bot, lang='ko' , type='slide', text=bot)=>{
+$.load = async (bot, data , type='slide', text=bot)=>{
   isLoad = false
 
-  _.lang = lang
+  _.lang = data
   //$.tts(text)
   $.bg.pause()
   if(navigator.vibrate)
