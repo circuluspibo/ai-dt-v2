@@ -71,12 +71,13 @@ export function create(){
   step = 0
   count = 0
 
-  if(_.lang = 'en'){
+
+  if(_.lang == 'en'){
     _.state.topic = 'en'
   } else {
     _.state.topic = 'object'
   }
-
+  
   alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
   mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
 
