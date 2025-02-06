@@ -76,7 +76,10 @@ export function create(){
 
   if(_.lang = 'en'){
     _.state.topic = 'en'
+  } else {
+    _.state.topic = 'object'
   }
+  
 
   wavesurfer = WaveSurfer.create({
     container: '#wave',

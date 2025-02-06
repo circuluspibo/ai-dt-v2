@@ -13,9 +13,6 @@ const stat = {
 let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
 let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
 
-if(_.lang = 'en'){
-  _.state.topic = 'en'
-}
 /*{
 	"ㄱ" : ["김밥","계란프라이","감자튀김"],
 	"ㄴ" : ["냉면","녹차"],
@@ -114,7 +111,9 @@ export function create(){
     })
     $.queryAll('tr[name=en]').forEach(item=>{
       item.style.display = 'none'
-    })  }
+    })  
+    _.state.topic = 'object'
+  }
 
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.textContent = ''})

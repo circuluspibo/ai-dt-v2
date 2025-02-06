@@ -59,8 +59,10 @@ export function create(){
 
   if(_.lang = 'en'){
     _.state.topic = 'en'
+  } else {
+    _.state.topic = 'object'
   }
- 
+  
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   
 
