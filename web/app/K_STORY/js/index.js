@@ -233,12 +233,23 @@ const pages = [
 ]
 
 const scripts = [
-  '어느 활짝 갠 겨울날에 개미들이 자신들이 여름철에 모은 씨앗 들을 말리고 있었어요.',
-  '<speak>그때 굶주림에 다 죽어가는 베짱이 한 마리가 지나가다 <voice name="man4">"먹을 걸 좀 만 나눠주겠니?"</voice> 라며 빌었어요.</speak>',
-  '<speak>개미들이 베짱이에게 물었어요. <voice name="woman8">"그럼 넌 여름철에 음식을 모아두지 않고 뭘 한 거니?"</voice> </speak>',
-  '<speak>베짱이가 대답했어요. <voice name="man4">"놀 시간도 부족하던걸. 매일같이 노래하느라 다 보냈지."</voice> </speak>',
-  '<speak>그러자 개미들이 조롱하며 말했어요. <voice name="woman8">"여름철 내내 노래나 하고 있을 정도로 어리석다면, 그럼 겨울엔 밥을 거르면서까지 춤만 춰대면 되겠네요."</voice> </speak>',
+    '어느 활짝 갠 겨울날에 개미들이 자신들이 여름철에 모은 씨앗 들을 말리고 있었어요.',
+    '<speak>그때 굶주림에 다 죽어가는 베짱이 한 마리가 지나가다 <voice name="man4">"먹을 걸 좀 만 나눠주겠니?"</voice> 라며 빌었어요.</speak>',
+    '<speak>개미들이 베짱이에게 물었어요. <voice name="woman8">"그럼 넌 여름철에 음식을 모아두지 않고 뭘 한 거니?"</voice> </speak>',
+    '<speak>베짱이가 대답했어요. <voice name="man4">"놀 시간도 부족하던걸. 매일같이 노래하느라 다 보냈지."</voice> </speak>',
+    '<speak>그러자 개미들이 조롱하며 말했어요. <voice name="woman8">"여름철 내내 노래나 하고 있을 정도로 어리석다면, 그럼 겨울엔 밥을 거르면서까지 춤만 춰대면 되겠네요."</voice> </speak>',
 ]
+
+/*,
+  "en" : [
+    "One bright winter day, ants were drying the seeds they had collected during the summer.
+    "<speak>Just then, a loach dying of starvation passed by and begged, <voice name="man4">"Can you give me some food?"</voice></speak>",
+    "<speak>The ants asked the grasshopper, <voice name="woman8">"Then what did you do instead of storing food during the summer?"</voice></speak>",
+    "<speak>The little rascal answered, <voice name="man4">"I didn't even have time to play. I spent every day singing."</voice></speak>",
+    "<speak>Then the ants mocked him and said, <voice name="woman8">"If you are so foolish as to sing all summer, then you can skip meals and just dance all winter."</voice></speak>",
+  ]
+}
+  */
 
 function next(){
   pos = 0
