@@ -2,8 +2,13 @@ import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js
 import RecordPlugin from 'https://unpkg.com/wavesurfer.js@7/dist/plugins/record.esm.js'
 
 let isStart = false
-const alphabet = _DATA[_.state.topic]
-const mapper = _MAPPER
+
+let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+
+if(_.lang = 'en'){
+  _.state.topic = 'en'
+}
 
 
 const cache = {}
@@ -66,6 +71,12 @@ export function create(){
   step = 0
   count = 0
 
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+
+  if(_.lang = 'en'){
+    _.state.topic = 'en'
+  }
 
   wavesurfer = WaveSurfer.create({
     container: '#wave',

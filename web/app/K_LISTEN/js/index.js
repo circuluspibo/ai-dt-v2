@@ -211,11 +211,11 @@ function start(isStep){
   document.getElementById('l_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=${_.lang}`
 
 
-  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}`)
+  $.tts(`${mapper[target]}, ${alphabet[target][Object.keys(alphabet[target])[0]]}.`)
 
-  setTimeout(()=>{
-    $.tts(Object.keys(alphabet[target])[0])
-  },1000)
+  //setTimeout(()=>{
+  //  $.tts(Object.keys(alphabet[target])[0])
+  //},1000)
 
   /*
   setTimeout(()=>{

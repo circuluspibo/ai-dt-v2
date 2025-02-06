@@ -1,9 +1,16 @@
 let isStart = false
-const alphabet = _DATA[_.state.topic]
-const mapper = _MAPPER
+
+
+let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+
+if(_.lang = 'en'){
+  _.state.topic = 'en'
+}
 
 const cache = {}
- 
+
+
 const messages = [
   "너무 잘했어",
   "탁월한 솜씨인걸?",
@@ -96,7 +103,13 @@ export function create(){
 
   // fabric.js로 캔버스 생성
   //const canvas = new fabric.Canvas('drawingCanvas');
-
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+  
+  if(_.lang = 'en'){
+    _.state.topic = 'en'
+  }
+  
 
   canvas = document.getElementById('drawingCanvas');
   ctx = canvas.getContext('2d');
