@@ -52,7 +52,7 @@ hammertime.on('swipedown', function(ev) {
 
 let isLoad = false
 
-$.load = async (bot, data , type='slide', text=bot)=>{
+$.load = async (bot, data='ko' , type='slide', text=bot)=>{
   isLoad = false
 
   _.lang = data
