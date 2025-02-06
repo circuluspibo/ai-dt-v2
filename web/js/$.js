@@ -123,12 +123,18 @@ $.load = async (bot, data='ko' , type='slide', text=bot)=>{
     $[bot] = script
     console.log('>',$)
 
-    if(_.script[bot].init){
-      const resp = _.script[bot].init(data)
-      if(resp instanceof Promise)
-        await resp
-    }
+    //if(_.script[bot].init){
+    //  const resp = _.script[bot].init(data)
+    //  if(resp instanceof Promise)
+    //    await resp
+    //}
   } 
+
+  if(_.script[bot].init){
+    const resp = _.script[bot].init(data)
+    if(resp instanceof Promise)
+      await resp
+  }
 
   if(_.script[_.id] && _.script[_.id].destroy)
     _.script[_.id].destroy(data)
