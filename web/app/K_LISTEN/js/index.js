@@ -54,14 +54,14 @@ export function create(){
   isStart = false
   //music.play()
 
-  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
-  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
-
   if(_.lang = 'en'){
     _.state.topic = 'en'
   } else {
     _.state.topic = 'object'
   }
+
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
   
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   

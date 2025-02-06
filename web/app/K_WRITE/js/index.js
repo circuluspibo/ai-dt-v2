@@ -99,16 +99,15 @@ export function create(){
 
   // fabric.js로 캔버스 생성
   //const canvas = new fabric.Canvas('drawingCanvas');
-  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
-  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
-  
   if(_.lang = 'en'){
     _.state.topic = 'en'
   } else {
     _.state.topic = 'object'
   }
-  
 
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+  
   canvas = document.getElementById('drawingCanvas');
   ctx = canvas.getContext('2d');
   const modeButton = document.getElementById('pen_mode');
