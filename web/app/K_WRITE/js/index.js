@@ -422,13 +422,13 @@ function start(isStep){
 
   document.getElementById('w_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=ko`
 
-  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}`,_.lang)
+  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}, ${alphabet[target][Object.keys(alphabet[target])[0]]}.`,_.lang)
 
+  /*
   setTimeout(()=>{
     $.tts(Object.keys(alphabet[target])[0],_.lang)
   },1000)
 
-  /*
   setTimeout(()=>{
     const audio = new Audio(`https://s-rapi.circul.us/v1/stream/game/${target}`)
     audio.play()
@@ -443,19 +443,6 @@ function start(isStep){
     const { similarityPercentage, differencePercentage } = compareCanvases(ctx.getImageData(0, 0, canvas.width, canvas.height).data, orgImg.data)
     console.log(`Similarity: ${similarityPercentage.toFixed(2)}%`);
     console.log(`Difference: ${differencePercentage.toFixed(2)}%`);
-    //ctx.getImageData(0, 0, canvas.width, canvas.height)
-
-    //elem_cnt.className = 'animate__animated animate__zoomIn'
-    /*
-    $.tts(mapper[target])
-
-    setTimeout(()=>{
-      $.tts(Object.keys(alphabet[target])[0])
-    },1000)
-    */
-
-    //if(similarityPercentage > 90)
-    //  calc($.query('td[name=write]'), alphabet[target][Object.keys(alphabet[target])[0]])
 
     if(down == 0)
       calc()
@@ -504,7 +491,7 @@ function calc(elem, value){
 
   if(value == alphabet[target][Object.keys(alphabet[target])[0]]){ 
     const char = value
-    $.tts(value,_.lang)
+    $.tts(`${value}, ${value}.`,_.lang)
     elem.className = 'animate__animated animate__zoomOut'
 
 
@@ -524,7 +511,7 @@ function calc(elem, value){
   } else if(elem != undefined){
 
     const char = value
-    $.tts(value,_.lang)
+    $.tts(`${value}, ${value}.`,_.lang)
     //audio.play()
     fail.play()
 

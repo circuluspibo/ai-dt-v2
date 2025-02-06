@@ -24,7 +24,6 @@ let canvasCtx = 0
 const pass = new Audio('/app/COLOR/sound/pass.mp3')
 const fail = new Audio('/app/COLOR/sound/fail.mp3')
 
-
 const chart = new Donutty( document.getElementById('HEAD_donut'),{ 
   color: "#b22729",
   max : 20,
@@ -52,7 +51,6 @@ export function create(){
   const videoElement = $.query('video')
   canvasElement = $.query('canvas')
   canvasCtx = canvasElement.getContext('2d')
-
 
   $.faceMesh.onResults(onResults);
 
