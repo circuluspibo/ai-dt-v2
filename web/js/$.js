@@ -147,6 +147,10 @@ let isPlay = false
 $.tts = (text, lang='ko')=>{
   if(isSpeak)
     _SPEAK.pause()
+
+  if(pibo)
+    pibo.tell(text, { lang })
+  
   isSpeak = true
   //if(isPlay)
   //  _AUDIO.pause()

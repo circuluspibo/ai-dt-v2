@@ -425,10 +425,10 @@ function start(isStep){
 
   document.getElementById('w_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=ko`
 
-  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}`)
+  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}`,_.lang)
 
   setTimeout(()=>{
-    $.tts(Object.keys(alphabet[target])[0])
+    $.tts(Object.keys(alphabet[target])[0],_.lang)
   },1000)
 
   /*
@@ -507,7 +507,7 @@ function calc(elem, value){
 
   if(value == alphabet[target][Object.keys(alphabet[target])[0]]){ 
     const char = value
-    $.tts(value)
+    $.tts(value,_.lang)
     elem.className = 'animate__animated animate__zoomOut'
 
 
@@ -527,7 +527,7 @@ function calc(elem, value){
   } else if(elem != undefined){
 
     const char = value
-    $.tts(value)
+    $.tts(value,_.lang)
     //audio.play()
     fail.play()
 

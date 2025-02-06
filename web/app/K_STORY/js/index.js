@@ -254,7 +254,7 @@ function next(){
 
     setTimeout($.exit,5000)
   } else {
-    $.tts(scripts[step])
+    $.tts(scripts[step],_.lang)
     $.query('img').src = pages[step]
     $.query('h2[name=script]').textContent = scripts[step].replace(/<[^>]*>?/g, '')
 
