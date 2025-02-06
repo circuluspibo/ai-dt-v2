@@ -193,12 +193,13 @@ function start(isStep){
   
   const target = Object.keys(alphabet).random()
 
-  let str = ''
+  let str = alphabet[target][0]
+    if(_.lang == 'ko')
 
-  for(let i = 0 ; i < alphabet[target][0].length ; i++){
-    const v = $.getVowel(alphabet[target][0].charAt(i))
-    str += v.f+v.s+v.t
-  }
+    for(let i = 0 ; i < alphabet[target][0].length ; i++){
+      const v = $.getVowel(alphabet[target][0].charAt(i))
+      str += v.f+v.s+v.t
+    }
 
   console.log('====vowel',str)
   item = { k : str, value : alphabet[target][0]}
