@@ -1,42 +1,7 @@
 let isStart = false
 
-const alphabet = _DATA[_.state.topic]
-const mapper = _MAPPER
-/*{
-	"ㄱ" : ["김밥","계란프라이","감자튀김"],
-	"ㄴ" : ["냉면","녹차"],
-	"ㄷ" : ["두부","도넛","돈까스"],
-	"ㄹ" : ["라면","롤케이크","레몬에이드"],
-	"ㅁ" : ["만두","물","마카롱"],
-	"ㅂ" : ["붕어빵","불고기","밥"],
-	"ㅅ" : ["소시지","스테이크","샌드위치"],
-	"ㅇ" : ["우유","아이스크림","요구르트"],
-	"ㅈ" : ["자장면","장어구이","잼"],
-	"ㅊ" : ["치킨","초밥","초콜릿"],
-	"ㅋ" : ["카레","쿠키"],
-	"ㅌ" : ["토스트","타코","탕후루"],
-	"ㅍ" : ["피자","파스타","팝콘"],
-	"ㅎ" : ["햄버거","핫도그","호떡"]
-}
-
-const mapper = {
-	"ㄱ" : "기역",
-	"ㄴ" : "니은",
-	"ㄷ" : "디귿",
-	"ㄹ" : "리을",
-	"ㅁ" : "미음",
-	"ㅂ" : "비읍",
-	"ㅅ" : "시옷",
-	"ㅇ" : "이응",
-	"ㅈ" : "지읒",
-	"ㅊ" : "치읓",
-	"ㅋ" : "키역",
-	"ㅌ" : "티긑",
-	"ㅍ" : "피읖",
-	"ㅎ" : "히읍"
-}
-*/
-
+let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
 const cache = {}
  
 const messages = [
@@ -88,6 +53,9 @@ export function create(){
   cnt = 0
   isStart = false
   //music.play()
+
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
  
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   
@@ -236,7 +204,7 @@ function start(isStep){
 
   console.log(Object.keys(alphabet[target]),mapper[Object.keys(alphabet[target])])
 
-  document.getElementById('l_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=ko`
+  document.getElementById('l_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=${_.lang}`
 
 
   $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}`)

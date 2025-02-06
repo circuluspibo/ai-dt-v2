@@ -1,6 +1,7 @@
 
 _ = {
   id : "HOME",
+  lang : 'ko',
   userId : 'pibo',
   len : '',
   state : {
@@ -51,8 +52,10 @@ hammertime.on('swipedown', function(ev) {
 
 let isLoad = false
 
-$.load = async (bot, data , type='slide', text=bot)=>{
+$.load = async (bot, lang='ko' , type='slide', text=bot)=>{
   isLoad = false
+
+  _.lang = lang
   //$.tts(text)
   $.bg.pause()
   if(navigator.vibrate)
