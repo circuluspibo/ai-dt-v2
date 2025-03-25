@@ -61,9 +61,12 @@ export function create(){
     _.state.topic = 'object'
   }
 
-  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+
+
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en'][_.data]
   mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
-  
+
+
   document.querySelectorAll(`#${_.id} ul > li`).forEach(elem=>{elem.className = ''})
   
 
@@ -189,32 +192,29 @@ function start(isStep){
   const arr = []
 
   document.querySelectorAll('#K_LISTEN td').forEach(el=>{
-    const alpha = sample(Object.keys(alphabet))
+    const alpha = sample([_.data[0],_.data[1]])
     arr.push(alpha)
 
-    el.textContent = alpha
+    if(Date.now() % 2 ==0)
+      el.textContent = alpha //[0]
+    else
+      el.textContent = alpha.toLowerCase()
 
   })
 
-  target = arr.random()
-
-  console.log(target,alphabet[target])
-  console.log(alphabet[target][Object.keys(alphabet[target])[0]])
-  const img = alphabet[target][Object.keys(alphabet[target])[0]]
+  target = alphabet.random()
 
   const el = document.querySelector('#K_LISTEN div[name=target] img')
-  el.src = `/image/i_${_.state.topic}/${img}.png`
+  el.src = `/image/${_.state.topic}/${_.data}/${target}.png`
   //const char = target.split('_')
   //el.textContent = char[1] + ' ' + char[2] + '\n' + alphabet[turn]
   //el.textContent = alphabet[target]
   getAverageRGB(el.src)
 
-  console.log(Object.keys(alphabet[target]),mapper[Object.keys(alphabet[target])])
+  //console.log(Object.keys(alphabet[target]),mapper[Object.keys(alphabet[target])])
 
-  document.getElementById('l_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=${_.lang}`
-
-
-  $.tts(`${mapper[target]}, ${alphabet[target][Object.keys(alphabet[target])[0]] } ${alphabet[target][Object.keys(alphabet[target])[0]] }.`,_.lang)
+  document.getElementById('l_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${target}, ${target}, ${target}"&voice=main&type=mp4&lang=${_.lang}`
+  //$.tts(`${target}, ${target} ${target}.`,_.lang)
 
   intv = setInterval(()=>{
     //elem_cnt.innerText = --down
@@ -266,7 +266,7 @@ function calc(elem, value){
   const fail = new Audio('/app/ANIMAL/sound/fail.mp3')
   const spendTime = Date.now() - startTime
 
-  if(value == target ){
+  if(value.toLowerCase() == target[0] ){
     const char = value
     $.tts(`${value}, ${value}.`,_.lang)
     elem.target.className = 'animate__animated animate__zoomOut'
@@ -298,6 +298,8 @@ function calc(elem, value){
     elem.target.className = 'animate__animated animate__flip fail'
     //elem.target.style.backgroundBlendMode = 'overlay';
     
+    let a = 'a'
+
     elem.target.textContent = `${value}`
     setTimeout(()=>{
       elem.target.className = ''

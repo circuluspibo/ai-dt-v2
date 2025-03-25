@@ -12,6 +12,9 @@ const limit = [20,10,5]
 let count = 0
 let initTime = 0
 
+
+let target = 0
+
 const state = [
   { level : -1, scores : []}, // [1/0,time, concent]
   { level : -1, scores : []},
@@ -64,8 +67,10 @@ export function create(){
 
   $.camera.start()
 
-
-  $.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
+  const alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en'][_.data]
+  
+  target = alphabet.random()
+  //$.tts('개미와 베짱이 이야기를 들려줄게. 잘 들어봐!')
 
   start()
 }
@@ -111,8 +116,6 @@ export function destroy(){
 let unfocusTime = 0
 let lastTime = 0
 
-
-let target = 0
 let wrong = 0
 let startTime = 0
 
@@ -132,13 +135,10 @@ function start(isStep){
     chart.set( "value", --down )
 
     if(down == 0)
-      calc() 
+      start() 
   },1000)
 
-
-
-  console.log(target,wrong)
-
+  next()
 
 }
 
@@ -164,6 +164,7 @@ function setLevel(){
       lv = 0
     }
   }
+  
   
   pibo.tell(`${type} 레벨로 게임을 시작해 볼게.`)
 
@@ -224,21 +225,7 @@ function calc(side){
   */
 }
 
-const pages = [
-  '/app/K_STORY/image/story1.jpg',
-  '/app/K_STORY/image/story2.jpg',
-  '/app/K_STORY/image/story3.jpg',
-  '/app/K_STORY/image/story4.jpg',
-  '/app/K_STORY/image/story5.jpg',
-]
 
-const scripts = [
-    '어느 활짝 갠 겨울날에 개미들이 자신들이 여름철에 모은 씨앗 들을 말리고 있었어요.',
-    '<speak>그때 굶주림에 다 죽어가는 베짱이 한 마리가 지나가다 <voice name="man4">"먹을 걸 좀 만 나눠주겠니?"</voice> 라며 빌었어요.</speak>',
-    '<speak>개미들이 베짱이에게 물었어요. <voice name="woman8">"그럼 넌 여름철에 음식을 모아두지 않고 뭘 한 거니?"</voice> </speak>',
-    '<speak>베짱이가 대답했어요. <voice name="man4">"놀 시간도 부족하던걸. 매일같이 노래하느라 다 보냈지."</voice> </speak>',
-    '<speak>그러자 개미들이 조롱하며 말했어요. <voice name="woman8">"여름철 내내 노래나 하고 있을 정도로 어리석다면, 그럼 겨울엔 밥을 거르면서까지 춤만 춰대면 되겠네요."</voice> </speak>',
-]
 
 /*,
   "en" : [
@@ -253,23 +240,29 @@ const scripts = [
 
 function next(){
   pos = 0
-  ++count
 
   console.log('next',step)
 
-  if(count == 6){
+  const stories = _STORY[target].story
+
+  $.query('.title h1').textContent = target
+  
+  if(step == stories.length){
+    clearInterval(intv)
     $.tts(`이야기 잘 들었어? 다음번에 더 재미난 이야기로 찾아갈게!`)
     document.querySelectorAll(`#${_.id} ul.check > li`).forEach(elem=>{elem.className = ''})
 
     setTimeout($.exit,5000)
   } else {
-    $.tts(scripts[step],_.lang)
-    $.query('img').src = pages[step]
-    $.query('h2[name=script]').textContent = scripts[step].replace(/<[^>]*>?/g, '')
+    $.tts(stories[step],_.lang)
+    $.query('img').src = `/image/${_.lang}/${_.data.toLowerCase()}/story/${stories[step]}.jpg`
+    $.query('h2[name=script]').innerHTML = `${stories[step].replace(target.toLowerCase(),`<span style='font-size:48px; color:#b92100;'>${target}</span>`)}<p>${_STORY_KO[target].story[step]}` //.replace(/<[^>]*>?/g, '')
+
+
 
     ++step
 
-    start() // 단계 소개
+    //start() // 단계 소개
   }
 
 

@@ -10,43 +10,9 @@ const stat = {
   duration : 0, // 총 시간
 }
 
-let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en'][_.data]
 let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
 
-/*{
-	"ㄱ" : ["김밥","계란프라이","감자튀김"],
-	"ㄴ" : ["냉면","녹차"],
-	"ㄷ" : ["두부","도넛","돈까스"],
-	"ㄹ" : ["라면","롤케이크","레몬에이드"],
-	"ㅁ" : ["만두","물","마카롱"],
-	"ㅂ" : ["붕어빵","불고기","밥"],
-	"ㅅ" : ["소시지","스테이크","샌드위치"],
-	"ㅇ" : ["우유","아이스크림","요구르트"],
-	"ㅈ" : ["자장면","장어구이","잼"],
-	"ㅊ" : ["치킨","초밥","초콜릿"],
-	"ㅋ" : ["카레","쿠키"],
-	"ㅌ" : ["토스트","타코","탕후루"],
-	"ㅍ" : ["피자","파스타","팝콘"],
-	"ㅎ" : ["햄버거","핫도그","호떡"]
-}
-
-const mapper = {
-	"ㄱ" : "기역",
-	"ㄴ" : "니은",
-	"ㄷ" : "디귿",
-	"ㄹ" : "리을",
-	"ㅁ" : "미음",
-	"ㅂ" : "비읍",
-	"ㅅ" : "시옷",
-	"ㅇ" : "이응",
-	"ㅈ" : "지읒",
-	"ㅊ" : "치읓",
-	"ㅋ" : "키역",
-	"ㅌ" : "티긑",
-	"ㅍ" : "피읖",
-	"ㅎ" : "히읍"
-}
-*/
 let point = 0
 let item = null
 
@@ -93,7 +59,7 @@ export function create(){
  // music.play()
 
 
-  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en'][_.data]
   mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
 
   if(_.lang = 'en'){
@@ -190,26 +156,27 @@ function start(isStep){
   down = limit[level] 
   chart.set("value", down)   
   
-  const target = Object.keys(alphabet).random()
+  const target = alphabet.random()
 
-  let str = alphabet[target][0]
+  let str = target
+
+
   if(_.lang == 'ko'){
 
-    for(let i = 0 ; i < alphabet[target][0].length ; i++){
-      const v = $.getVowel(alphabet[target][0].charAt(i))
+    for(let i = 0 ; i < target.length ; i++){
+      const v = $.getVowel(target.charAt(i))
       str += v.f+v.s+v.t
     }
   }
 
   console.log('====vowel',str)
-  item = { k : str, value : alphabet[target][0]}
+  item = { k : str, value : target}
 
-  const eng = new Audio(`http://oe-sapi.circul.us/tts?text=${item.k}&lang=${_.lang}`)
-  eng.play()
+  $.tts(`${target}, ${target}, ${target}.`,_.lang)
 
   for(let i = 0 ; i < item.k.length ; i++){
     const td  = document.createElement('td')
-    td.innerText = item.k.charAt(i).toUpperCase()
+    td.innerText = item.k.charAt(i) //.toUpperCase()
 
     let key = item.k.charAt(i).toUpperCase()
     if(item.k.charAt(i) == " ")

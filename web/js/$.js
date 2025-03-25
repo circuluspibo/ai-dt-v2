@@ -2,6 +2,7 @@
 _ = {
   id : "HOME",
   lang : 'ko',
+  data : "",
   userId : 'pibo',
   len : '',
   state : {
@@ -52,11 +53,11 @@ hammertime.on('swipedown', function(ev) {
 
 let isLoad = false
 
-$.load = async (bot, data='ko' , type='slide', text=bot)=>{
+$.load = async (bot, lang='ko', data="" , type='slide', text=bot)=>{
   isLoad = false
 
-  _.lang = data
-
+  _.lang = lang
+  _.data = data
 
   //$.tts(text)
   $.bg.pause()

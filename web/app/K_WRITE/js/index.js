@@ -105,7 +105,7 @@ export function create(){
     _.state.topic = 'object'
   }
 
-  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en'][_.data]
   mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
   
   canvas = document.getElementById('drawingCanvas');
@@ -124,7 +124,7 @@ export function create(){
 
   // 모드 전환 버튼 이벤트
   modeButton.addEventListener('click', () => {
-    calc($.query('td[name=write]'), alphabet[target][Object.keys(alphabet[target])[0]])
+    calc($.query('td[name=write]'), target)
     /*
     if(isErasing){
       isErasing = false;
@@ -374,10 +374,8 @@ function start(isStep){
 
   clearInterval(intv)
 
-  const arr = []
 
-  const alpha = sample(Object.keys(alphabet))
-  arr.push(alpha)
+  target =sample(alphabet)
   /*
   document.querySelectorAll('#K_WRITE td').forEach(el=>{
     const alpha = sample(Object.keys(alphabet))
@@ -387,43 +385,38 @@ function start(isStep){
     el.textContent = alpha
   })
   */
-  target = arr.random()
 
-  document.querySelector('#K_WRITE td[name=t_1]').textContent = alphabet[target][0]//mapper[target]
+
+
+  document.querySelector('#K_WRITE td[name=t_1]').textContent = target//mapper[target]
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.font = '240px "Noto Sans KR"'; // 폰트 설정
+  ctx.font = '160px "Noto Sans KR"'; // 폰트 설정
   ctx.fillStyle = 'black'; // 글씨 색상
   ctx.textAlign = "center";
-  ctx.fillText(alphabet[target][0], 450, 320); // 글씨와 출력 위치
+  ctx.fillText(target, 450, 320); // 글씨와 출력 위치
 
   orgImg = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.font = '240px "Noto Sans KR"'; // 폰트 설정
+  ctx.font = '160px "Noto Sans KR"'; // 폰트 설정
   ctx.strokeStyle = 'Gainsboro';
   ctx.lineWidth = 3;
   ctx.fillStyle = 'white'; // 글씨 색상
   ctx.textAlign = "center";
-  ctx.strokeText(alphabet[target][0], 450, 320);
+  ctx.strokeText(target, 450, 240);
   //ctx.fillText(alphabet[target][0], 450, 320); // 글씨와 출력 위치
 
-  console.log(target,alphabet[target])
-  console.log(alphabet[target][Object.keys(alphabet[target])[0]])
-  const img = alphabet[target][Object.keys(alphabet[target])[0]]
 
   const el = document.querySelector('#K_WRITE div[name=target] img')
-  el.src = `/image/i_${_.state.topic}/${img}.png`
+  el.src = `/image/${_.state.topic}/${_.data}/${target}.png`
   //const char = target.split('_')
   //el.textContent = char[1] + ' ' + char[2] + '\n' + alphabet[turn]
   //el.textContent = alphabet[target]
   getAverageRGB(el.src)
 
-  console.log(Object.keys(alphabet[target]),mapper[Object.keys(alphabet[target])])
 
-  document.getElementById('w_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=ko`
-
-  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}, ${alphabet[target][Object.keys(alphabet[target])[0]]}.`,_.lang)
-
+  document.getElementById('w_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${target}, ${target}, ${target}"&voice=main&type=mp4&lang=${_.lang}`
+  //$.tts(`${target}, ${target} ${target}.`,_.lang)
   /*
   setTimeout(()=>{
     $.tts(Object.keys(alphabet[target])[0],_.lang)
@@ -443,6 +436,9 @@ function start(isStep){
     const { similarityPercentage, differencePercentage } = compareCanvases(ctx.getImageData(0, 0, canvas.width, canvas.height).data, orgImg.data)
     console.log(`Similarity: ${similarityPercentage.toFixed(2)}%`);
     console.log(`Difference: ${differencePercentage.toFixed(2)}%`);
+
+    //if(similarityPercentage > 80)
+    //  calc($.query('td[name=write]'), target)
 
     if(down == 0)
       calc()
@@ -489,7 +485,7 @@ function calc(elem, value){
   const fail = new Audio('/app/ANIMAL/sound/fail.mp3')
   const spendTime = Date.now() - startTime
 
-  if(value == alphabet[target][Object.keys(alphabet[target])[0]]){ 
+  if(value == target){ 
     const char = value
     $.tts(`${value}, ${value}.`,_.lang)
     elem.className = 'animate__animated animate__zoomOut'
@@ -520,7 +516,7 @@ function calc(elem, value){
     elem.className = 'animate__animated animate__flip fail'
     //elem.target.style.backgroundBlendMode = 'overlay';
     
-    elemd.textContent = `${value}`
+    elem.textContent = `${value}`
     setTimeout(()=>{
       elem.className = ''
       elem.textContent = ''

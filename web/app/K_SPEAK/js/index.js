@@ -2,9 +2,8 @@ import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js
 import RecordPlugin from 'https://unpkg.com/wavesurfer.js@7/dist/plugins/record.esm.js'
 
 let isStart = false
-
-let alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
-let mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
+let alphabet 
+let mapper
 
 if(_.lang = 'en'){
   _.state.topic = 'en'
@@ -78,7 +77,7 @@ export function create(){
     _.state.topic = 'object'
   }
 
-  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en']
+  alphabet = _.lang == 'ko' ? _DATA[_.state.topic] :  _DATA['en'][_.data]
   mapper = _.lang == 'ko' ?  _MAPPER : _MAPPER_EN
 
   wavesurfer = WaveSurfer.create({
@@ -129,6 +128,7 @@ let isListen = false
 export function event(){
 
   $.query('td[name=t_1]').addEventListener('click',elem=>{
+    
     console.log('listen start....')
 
     if(isListen){
@@ -239,6 +239,8 @@ function start(isStep){
 
   clearInterval(intv)
 
+  //$.query('td[name=t_2]').textContent = 'Start!'
+
   if(isStep)
     setLevel()
 
@@ -248,39 +250,33 @@ function start(isStep){
 
   clearInterval(intv)
 
-  const arr = []
+  target = alphabet.random()
 
-  const alpha = sample(Object.keys(alphabet))
-  arr.push(alpha)
-  /*
-  document.querySelectorAll('#K_SPEAK td').forEach(el=>{
-    const alpha = sample(Object.keys(alphabet))
-    arr.push(alpha)
-   //el.style.backgroundImage = `url('/app/#K_SPEAK/${alpha[0]}')`
-    //el.style.backgroundSize="100% 100%";
-    el.textContent = alpha
-  })
-  */
-  target = arr.random()
+  let a = 'a'
+  if(target[0].indexOf('a','e') > -1)
+    a = 'an'
 
-  document.querySelector('#K_SPEAK td[name=t_1]').textContent = alphabet[target][0]//mapper[target]
+  const st = _SENTENCE[target].random()
+  
 
-  console.log(target,alphabet[target])
-  console.log(alphabet[target][Object.keys(alphabet[target])[0]])
-  const img = alphabet[target][Object.keys(alphabet[target])[0]]
+  const item = st.replace(new RegExp(target, 'gi'),`<span style='font-size:96px;color:red;'>${target}</span>`)
+  document.querySelector('#K_SPEAK td[name=t_1]').innerHTML = `<p style='font-size:72px;'>${item}</p>`//mapper[target]
+
+  //document.querySelector('#K_SPEAK td[name=t_1]').innerHTML = `<p style='font-size:72px'>I see ${a}</p><p style='font-size:160px'>${target}</p>`//mapper[target]
+
+  console.log(target)
 
   const el = document.querySelector('#K_SPEAK div[name=target] img')
-  el.src = `/image/i_${_.state.topic}/${img}.png`
+  el.src = `/image/${_.lang}/${_.data}/${target}.png`
   //const char = target.split('_')
   //el.textContent = char[1] + ' ' + char[2] + '\n' + alphabet[turn]
   //el.textContent = alphabet[target]
   getAverageRGB(el.src)
 
-  console.log(Object.keys(alphabet[target]),mapper[Object.keys(alphabet[target])])
 
-  document.getElementById('s_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}"&voice=main&type=mp4&lang=ko`
+  document.getElementById('s_human').src =`https://oe-napi.circul.us/v1/txt2human?text="${item}"&voice=main&type=mp4&lang=${_.lang}`
 
-  $.tts(`${mapper[target]} ${alphabet[target][Object.keys(alphabet[target])[0]]}, ${alphabet[target][Object.keys(alphabet[target])[0]]}.`,_.lang)
+  //$.tts(`${target}, ${target}, ${target}.`,_.lang)
 
 
   intv = setInterval(()=>{
@@ -362,13 +358,12 @@ function calc(elem, value){
   const fail = new Audio('/app/ANIMAL/sound/fail.mp3')
   const spendTime = Date.now() - startTime
 
-  console.log(Object.keys(alphabet[target]),target)
 
   if(value != undefined){
-  const val = levenshtein(value.trim(), alphabet[target][0])
-  console.log('levenper', val)
+  //const val = levenshtein(value.toLowerCase().trim(), target)
+  //console.log('levenper', val)
 
-    if(val > 80){ // 한단어만? // target
+    if(value.toLowerCase().trim().indexOf(target > -1)){ // 한단어만? // target
       const char = value
       $.tts(`${value}, ${value}.`,_.lang)
       elem.target.className = 'animate__animated animate__zoomOut'
