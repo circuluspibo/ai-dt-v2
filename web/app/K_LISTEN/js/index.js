@@ -266,7 +266,7 @@ function calc(elem, value){
   const fail = new Audio('/app/ANIMAL/sound/fail.mp3')
   const spendTime = Date.now() - startTime
 
-  if(value.toLowerCase() == target[0] ){
+  if(value && value.toLowerCase() == target[0] ){
     const char = value
     $.tts(`${value}, ${value}.`,_.lang)
     elem.target.className = 'animate__animated animate__zoomOut'
