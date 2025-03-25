@@ -205,7 +205,7 @@ function start(isStep){
   target = alphabet.random()
 
   const el = document.querySelector('#K_LISTEN div[name=target] img')
-  el.src = `/image/${_.state.topic}/${_.data}/${target}.png`
+  el.src = `/image/${_.state.topic}/${_.data.toLowerCase()}/${target}.png`
   //const char = target.split('_')
   //el.textContent = char[1] + ' ' + char[2] + '\n' + alphabet[turn]
   //el.textContent = alphabet[target]

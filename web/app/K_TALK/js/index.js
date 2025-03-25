@@ -223,7 +223,7 @@ function start(isStep){
   console.log(target)
 
   const el = document.querySelector('#K_SPEAK div[name=target] img')
-  el.src = `/image/${_.lang}/${_.data}/${target}.png`
+  el.src = `/image/${_.lang}/${_.data.toLowerCase()}/${target}.png`
   //const char = target.split('_')
   //el.textContent = char[1] + ' ' + char[2] + '\n' + alphabet[turn]
   //el.textContent = alphabet[target]
