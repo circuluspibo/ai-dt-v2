@@ -40,6 +40,17 @@ li {
   color : black;
 }
 
+#K_SPEAK .start {
+  width : 128px;
+  height : 64px;
+  position: absolute;
+  font-size :18px;
+  right: 500px;
+  z-index: 10;
+  color : white;
+  background-color :slateblue
+}
+
 #K_SPEAK table {
   width : 100%;
   height : 90%;

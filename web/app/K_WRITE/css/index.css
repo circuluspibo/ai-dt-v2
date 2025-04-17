@@ -63,10 +63,17 @@ li {
   font-size: 160px;
 }
 
-#pen_mode {
+#K_WRITE .start {
+  width : 128px;
+  height : 64px;
   position: absolute;
+  font-size :18px;
   right: 500px;
+  z-index: 10;
+  color : white;
+  background-color :slateblue
 }
+
 
 #K_WRITE table td:hover {
   color : white;

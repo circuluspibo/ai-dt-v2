@@ -127,8 +127,8 @@ let isListen = false
 
 export function event(){
 
-  $.query('td[name=t_1]').addEventListener('click',elem=>{
-    
+  $.query('#listen').addEventListener('click',elem=>{
+    $.query('#listen').innerHTML = '<i class="fa-solid fa-pause"></i> 완료!'
     console.log('listen start....')
 
     if(isListen){
@@ -141,14 +141,17 @@ export function event(){
 
     $.listen(out=>{
       console.log('listend,',out)
-
+      $.query('#listen').innerHTML = '<i class="fa-solid fa-microphone"></i> 녹음 시작'
       //if (rec.isRecording()) {
       //  rec.stopRecording()
       //} else {
       //rec.stopRecording() //record.startRecording({ deviceId })
       //}
 
-      calc(elem, out.trim())
+      console.log('...',document.querySelector('#K_SPEAK td[name=t_2]'))
+
+      
+      calc(document.querySelector('#K_SPEAK td[name=t_2]'), out.trim())
     })
   })
 
@@ -366,7 +369,7 @@ function calc(elem, value){
     if(value.toLowerCase().trim().indexOf(target > -1)){ // 한단어만? // target
       const char = value
       $.tts(`${value}, ${value}.`,_.lang)
-      elem.target.className = 'animate__animated animate__zoomOut'
+      elem.className = 'animate__animated animate__zoomOut'
 
 
       clearInterval(intv)
@@ -390,7 +393,7 @@ function calc(elem, value){
   
       //elem.target.style.color = 'black'
       //elem.target.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
-      elem.target.className = 'animate__animated animate__flip fail'
+      elem.className = 'animate__animated animate__flip fail'
       //elem.target.style.backgroundBlendMode = 'overlay';
       
     
@@ -398,7 +401,7 @@ function calc(elem, value){
       setTimeout(()=>{
         //elem.target.className = ''
         //elem.target.textContent = ''
-        elem.target.color = ''
+        elem.color = ''
       },2000)   
     }
   } else if(elem != undefined){
