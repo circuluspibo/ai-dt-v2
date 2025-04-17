@@ -3,8 +3,9 @@ const _DATA = {
         "A": ["airplane","alligator","ambulance","ant","apple","armond"],//, "ant", "arm"],
         "B": ["ball","bear","bell","bicycle","bird","bus"],//, "bat", "bed"], 
         "AB": ["airplane","alligator","ambulance","ant","apple","armond", "ball","bear","bell","bicycle","bird","bus"],
-        "C": ["cat"],//, "car", "cup"],
-        "D": ["dog"],//, "dad", "dot"], 2
+        "C": ["cat","chick","cap","coat","candy","cake"],//, "car", "cup"],
+        "D": ["dog","duck","doll","drum","dinosaur","dolphin"],//, "dad", "dot"], 2
+        "CD" : ["cat","chick","cap","coat","candy","cake", "dog","duck","doll","drum","dinosaur","dolphin"],
         "E": ["egg"],//, "ear", "eye"],
         "F": ["fox"],//, "fun", "fox"], 3
         "G": ["goat"],//, "gum", "gift"],
@@ -157,6 +158,66 @@ const _SENTENCE = {
       "Buses are yellow.",
       "I ride the bus.",
       "Many take buses."
+    ],
+    "cat": [
+      "Cat sleeps here.",
+      "Cats like milk.",
+      "My cat purrs."
+    ],
+    "chick": [
+      "Chick is yellow.",
+      "Chicks say cheep.",
+      "Baby chick hatched."
+    ],
+    "cap": [
+      "Red cap fits.",
+      "My cap here.",
+      "Cap is blue."
+    ],
+    "coat": [
+      "Warm coat please.",
+      "Big red coat.",
+      "Coat for winter."
+    ],
+    "candy": [
+      "Sweet candy tastes.",
+      "Candy is colorful.",
+      "I like candy."
+    ],
+    "cake": [
+      "Birthday cake tastes.",
+      "Cake has candles.",
+      "Yummy chocolate cake."
+    ],
+    "dog": [
+      "Dogs bark loud.",
+      "My dog plays.",
+      "Dog wags tail."
+    ],
+    "duck": [
+      "Duck swims fast.",
+      "Yellow baby duck.",
+      "Duck says quack."
+    ],
+    "doll": [
+      "Pretty doll smiles.",
+      "My doll sleeps.",
+      "Doll wears dress."
+    ],
+    "drum": [
+      "Drum sounds loud.",
+      "Bang the drum.",
+      "My red drum."
+    ],
+    "dinosaur": [
+      "Dinosaurs lived before.",
+      "Big scary dinosaur.",
+      "Dinosaur has teeth."
+    ],
+    "dolphin": [
+      "Dolphins swim fast.",
+      "Dolphin jumps high.",
+      "Dolphins are smart."
     ]
   }
 
@@ -279,6 +340,126 @@ const _SENTENCE = {
       "The bus takes me and my friends to school.",
       "After school, the bus brings us back home.",
       "I wave goodbye to the bus driver until tomorrow."
+    ]
+  },
+  "cat": {
+    "title": "My Fluffy Cat Friend",
+    "story": [
+      "Tom has a cat.",
+      "The cat is orange and fluffy.",
+      "His cat likes to play with yarn.",
+      "Every morning, the cat drinks milk.",
+      "The cat sleeps on Tom's bed at night."
+    ]
+  },
+  "chick": {
+    "title": "Little Yellow Farm Chick",
+    "story": [
+      "The chick is small and yellow.",
+      "My chick lives on a farm.",
+      "The chick makes 'cheep cheep' sounds.",
+      "Mother hen watches her chick carefully.",
+      "The little chick grows bigger every day."
+    ]
+  },
+  "cap": {
+    "title": "Billy's Special Red Cap",
+    "story": [
+      "Billy wears a red cap.",
+      "His cap has a star on it.",
+      "Sometimes he loses his cap at school.",
+      "The cap keeps the sun away.",
+      "Dad bought a new cap for Billy's birthday."
+    ]
+  },
+  "coat": {
+    "title": "Emma's Warm Blue Coat",
+    "story": [
+      "Emma has a blue coat.",
+      "Her coat is warm and soft.",
+      "She wears her coat in winter.",
+      "The coat has four big buttons.",
+      "Emma keeps candy in her coat pocket."
+    ]
+  },
+  "candy": {
+    "title": "Sweet Colorful Candy Time",
+    "story": [
+      "Children love candy.",
+      "The candy is sweet and colorful.",
+      "Mom says too much candy is not good.",
+      "I share my candy with friends.",
+      "We eat candy on special days."
+    ]
+  },
+  "cake": {
+    "title": "Happy Birthday Chocolate Cake",
+    "story": [
+      "Today is my birthday cake day.",
+      "Mom baked a chocolate cake for me.",
+      "The cake has six candles on top.",
+      "Everyone sang while I cut the cake.",
+      "The cake was delicious and sweet."
+    ]
+  },
+  "dog": {
+    "title": "Spot My Playful Dog",
+    "story": [
+      "My dog is named Spot.",
+      "The dog likes to run and play.",
+      "Every day, my dog chases balls.",
+      "My dog barks at the mailman.",
+      "I love my dog very much."
+    ]
+  },
+  "duck": {
+    "title": "Pond Duck Goes Quack",
+    "story": [
+      "The duck swims in our pond.",
+      "This duck has yellow feet.",
+      "The duck makes \"quack quack\" sounds.",
+      "Baby ducks follow mother duck.",
+      "Our duck eats bread crumbs."
+    ]
+  },
+  "doll": {
+    "title": "Jenny's Pretty Pink Doll",
+    "story": [
+      "Jenny has a pretty doll.",
+      "Her doll wears a pink dress.",
+      "She brushes her doll's hair every day.",
+      "The doll sits on Jenny's shelf.",
+      "Jenny takes her doll to school."
+    ]
+  },
+  "drum": {
+    "title": "Tim's Loud New Drum",
+    "story": [
+      "Tim got a new drum.",
+      "The drum makes loud sounds.",
+      "He plays his drum in the morning.",
+      "Dad says the drum is too noisy.",
+      "Tim loves his drum very much."
+    ]
+  },
+  "dinosaur": {
+    "title": "Jack Loves Big Dinosaurs",
+    "story": [
+      "Jack reads about dinosaurs.",
+      "His favorite dinosaur is T-Rex.",
+      "The dinosaur lived long ago.",
+      "Some dinosaurs were very big.",
+      "Jack drew a dinosaur picture."
+    ]
+  },
+  "dolphin": {
+    "title": "Smart Jumping Water Dolphin",
+    "story": [
+      "We saw a dolphin at the aquarium.",
+      "The dolphin jumped high in the water.",
+      "A dolphin is very smart.",
+      "The dolphin made clicking sounds.",
+      "I want to swim with a dolphin someday."
     ]
   }
 }
@@ -404,9 +585,128 @@ const _STORY_KO = {
       "방과 후, 버스는 우리를 집으로 다시 데려다 줘요.",
       "내일까지 버스 운전사에게 손을 흔들며 작별 인사를 해요."
     ]
+  },
+  "cat": {
+    "title": "나의 푹신한 고양이 친구",
+    "story": [
+      "톰은 고양이가 있어요.",
+      "그 고양이는 주황색이고 푹신해요.",
+      "그의 고양이는 실뭉치를 가지고 놀기 좋아해요.",
+      "매일 아침, 고양이는 우유를 마셔요.",
+      "고양이는 밤에 톰의 침대에서 자요."
+    ]
+  },
+  "chick": {
+    "title": "작은 노란 농장 병아리",
+    "story": [
+      "병아리는 작고 노랑이에요.",
+      "내 병아리는 농장에 살아요.",
+      "병아리는 \"삐약 삐약\" 소리를 내요.",
+      "어미 닭은 병아리를 주의 깊게 지켜봐요.",
+      "작은 병아리는 매일 더 크게 자라요."
+    ]
+  },
+  "cap": {
+    "title": "빌리의 특별한 빨간 모자",
+    "story": [
+      "빌리는 빨간 모자를 써요.",
+      "그의 모자에는 별이 있어요.",
+      "때때로 그는 학교에서 모자를 잃어버려요.",
+      "모자는 햇빛을 가려줘요.",
+      "아빠는 빌리의 생일에 새 모자를 사줬어요."
+    ]
+  },
+  "coat": {
+    "title": "에마의 따뜻한, 파란 코트",
+    "story": [
+      "에마는 파란 코트가 있어요.",
+      "그녀의 코트는 따뜻하고 부드러워요.",
+      "그녀는 겨울에 코트를 입어요.",
+      "코트에는 큰 단추가 네 개 있어요.",
+      "에마는 코트 주머니에 사탕을 넣어둬요."
+    ]
+  },
+  "candy": {
+    "title": "달콤한 컬러풀한 사탕 시간",
+    "story": [
+      "아이들은 사탕을 좋아해요.",
+      "사탕은 달콤하고 다양한 색깔이에요.",
+      "엄마는 사탕을 너무 많이 먹으면 안 좋다고 말해요.",
+      "나는 내 사탕을 친구들과 나눠요.",
+      "우리는 특별한 날에 사탕을 먹어요."
+    ]
+  },
+  "cake": {
+    "title": "생일 초콜릿 케이크",
+    "story": [
+      "오늘은 내 생일 케이크 날이에요.",
+      "엄마가 나를 위해 초콜릿 케이크를 구웠어요.",
+      "케이크 위에는 초가 여섯 개 있어요.",
+      "내가 케이크를 자를 때 모두가 노래를 불렀어요.",
+      "케이크는 맛있고 달콤했어요."
+    ]
+  },
+  "dog": {
+    "title": "장난꾸러기 내 강아지 스팟",
+    "story": [
+      "내 강아지 이름은 스팟이에요.",
+      "강아지는 뛰고 놀기를 좋아해요.",
+      "매일, 내 강아지는 공을 쫓아가요.",
+      "내 강아지는 우편배달부에게 짖어요.",
+      "나는 내 강아지를 매우 사랑해요."
+    ]
+  },
+  "duck": {
+    "title": "연못 오리는 꽥꽥 소리 내요",
+    "story": [
+      "오리는 우리 연못에서 수영해요.",
+      "이 오리는 노란 발이 있어요.",
+      "오리는 \"꽥꽥\" 소리를 내요.",
+      "아기 오리들은 엄마 오리를 따라가요.",
+      "우리 오리는 빵 부스러기를 먹어요."
+    ]
+  },
+  "doll": {
+    "title": "제니의 예쁜 핑크 인형",
+    "story": [
+      "제니는 예쁜 인형이 있어요.",
+      "그녀의 인형은 분홍색 드레스를 입어요.",
+      "그녀는 매일 인형의 머리를 빗어줘요.",
+      "인형은 제니의 선반에 앉아 있어요.",
+      "제니는 인형을 학교에 가져가요."
+    ]
+  },
+  "drum": {
+    "title": "팀의 시끄러운 새 드럼",
+    "story": [
+      "팀은 새 드럼을 얻었어요.",
+      "드럼은 큰 소리를 내요.",
+      "그는 아침에 드럼을 연주해요.",
+      "아빠는 드럼이 너무 시끄럽다고 말해요.",
+      "팀은 그의 드럼을 매우, 사랑해요."
+    ]
+  },
+  "dinosaur": {
+    "title": "잭은 큰 공룡을 좋아해요",
+    "story": [
+      "잭은 공룡에 대해 읽어요.",
+      "그의 가장 좋아하는 공룡은 티렉스에요.",
+      "공룡은 오래 전에 살았어요.",
+      "어떤 공룡들은 매우 커요.",
+      "잭은 공룡 그림을 그렸어요."
+    ]
+  },
+  "dolphin": {
+    "title": "똑똑한 점프하는 물 돌고래",
+    "story": [
+      "우리는 수족관에서 돌고래를 봤어요.",
+      "돌고래는 물 위로 높이 점프했어요.",
+      "돌고래는 매우 똑똑해요.",
+      "돌고래는 클릭 소리를 냈어요.",
+      "나는 언젠가 돌고래와 함께 수영하고 싶어요."
+    ]
   }
-}  
-
+}
 
 const _MAPPER = {
     "ㄱ" : "기역",
