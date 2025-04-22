@@ -255,7 +255,7 @@ function next(){
     setTimeout($.exit,5000)
   } else {
     $.tts(stories[step],_.lang)
-    $.query('img').src = `http://222.112.0.215:3000/image/${_.lang}/${_.data.toLowerCase()}/story/${stories[step]}.jpg`
+    $.query('img').src = `/image/${_.lang}/${_.data.toLowerCase()}/story/${stories[step]}.jpg`
     $.query('h2[name=script]').innerHTML = `${stories[step].replace(target.toLowerCase(),`<span style='font-size:48px; color:#b92100;'>${target}</span>`)}<p>${_STORY_KO[target].story[step]}` //.replace(/<[^>]*>?/g, '')
 
 
