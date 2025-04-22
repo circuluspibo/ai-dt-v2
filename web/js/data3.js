@@ -3,9 +3,9 @@ const _DATA = {
         "A": ["airplane","alligator","ambulance","ant","apple","armond"],//, "ant", "arm"],
         "B": ["ball","bear","bell","bicycle","bird","bus"],//, "bat", "bed"], 
         "AB": ["airplane","alligator","ambulance","ant","apple","armond", "ball","bear","bell","bicycle","bird","bus"],
-        "C": ["cat","chick","cap","coat","candy","cake"],//, "car", "cup"],
+        "C": ["cat","chicken","cap","coat","candy","cake"],//, "car", "cup"],
         "D": ["dog","duck","doll","drum","dinosaur","dolphin"],//, "dad", "dot"], 2
-        "CD" : ["cat","chick","cap","coat","candy","cake", "dog","duck","doll","drum","dinosaur","dolphin"],
+        "CD" : ["cat","chicken","cap","coat","candy","cake", "dog","duck","doll","drum","dinosaur","dolphin"],
         "E": ["egg"],//, "ear", "eye"],
         "F": ["fox"],//, "fun", "fox"], 3
         "G": ["goat"],//, "gum", "gift"],
@@ -164,10 +164,10 @@ const _SENTENCE = {
       "Cats like milk.",
       "My cat purrs."
     ],
-    "chick": [
-      "Chick is yellow.",
-      "Chicks say cheep.",
-      "Baby chick hatched."
+    "chicken": [
+      "chicken is yellow.",
+      "chickens say cheep.",
+      "Baby chicken hatched."
     ],
     "cap": [
       "Red cap fits.",
@@ -352,14 +352,14 @@ const _SENTENCE = {
       "The cat sleeps on Tom's bed at night."
     ]
   },
-  "chick": {
-    "title": "Little Yellow Farm Chick",
+  "chicken": {
+    "title": "Little Yellow Farm chicken",
     "story": [
-      "The chick is small and yellow.",
-      "My chick lives on a farm.",
-      "The chick makes 'cheep cheep' sounds.",
-      "Mother hen watches her chick carefully.",
-      "The little chick grows bigger every day."
+      "The chicken is small and yellow.",
+      "My chicken lives on a farm.",
+      "The chicken makes 'cheep cheep' sounds.",
+      "Mother hen watches her chicken carefully.",
+      "The little chicken grows bigger every day."
     ]
   },
   "cap": {
@@ -596,7 +596,7 @@ const _STORY_KO = {
       "고양이는 밤에 톰의 침대에서 자요."
     ]
   },
-  "chick": {
+  "chicken": {
     "title": "작은 노란 농장 병아리",
     "story": [
       "병아리는 작고 노랑이에요.",

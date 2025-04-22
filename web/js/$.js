@@ -158,7 +158,7 @@ $.tts = (text, lang='ko')=>{
   //if(isPlay)
   //  _AUDIO.pause()
   //_SPEAK = new Audio(`/v1/tts?text=${text}&lang=${lang}`)
-  _SPEAK = new Audio(`http://oe-sapi.circul.us/v1/tts?text=${text}&lang=${lang}`)
+  _SPEAK = new Audio(`http://oe-sapi.circul.us/v1/tts?text=${text}&lang=${lang}&rate=x-slow`)
   _SPEAK.play()
   _SPEAK.addEventListener('ended',e=>{
     isSpeak = false
